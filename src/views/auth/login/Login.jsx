@@ -8,6 +8,8 @@ import "./login.css";
 
 import { useForm } from "../../../hooks/useForm";
 
+import { startLogin } from "../../../redux/actions/auth";
+
 //REDUX
 import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
@@ -42,6 +44,7 @@ const theme = createTheme();
 //LOGIN
 const Login = ({ fetchUsuario }) => {
   //REDUX
+  const dispatch = useDispatch();
 
   /* CARGAR DATOS */
 
@@ -60,7 +63,9 @@ const Login = ({ fetchUsuario }) => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const enviarDatos = await fetchUsuario(correo, password);
+    dispatch(startLogin(correo, password));
+
+    /*   const enviarDatos = await fetchUsuario(correo, password);
 
     if (enviarDatos == true) {
       navigate("/Panel");
@@ -68,7 +73,7 @@ const Login = ({ fetchUsuario }) => {
 
     console.log(correo);
     console.log("fetch", await fetchUsuario(correo, password));
-    console.log(password);
+    console.log(password); */
   };
 
   return (

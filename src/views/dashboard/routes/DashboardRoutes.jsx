@@ -9,7 +9,7 @@ import Sidebar from "../../../components/sidebar/Sidebar";
 import Home from "../home/Home";
 //import Info from "../informacion/Info";
 //import Login from "../login/Login";
-import Panel from "../panel/Panel";
+//import Panel from "../panel/Panel";
 import List from "../tabla/List";
 import RegisterUsuario from "../Registros/Register";
 import RegisterCategoria from "../Registros/RegisterCategorias";
@@ -32,58 +32,23 @@ export const DashboardRoutes = () => {
         <Navbar />
 
         <Routes>
-          {/* <Route exact path="/Catalogo" element={<Catalogo />} />
-          <Route exact path="/Informacion" element={<Info />} /> */}
-          <Route exact path="/Panel" element={<Panel />} />
           {/* <Route exact path="/Iniciosesion" element={<Login />} /> */}
-          <Route exact path="/RegisterUsuario" element={<RegisterUsuario />} />
-          <Route
-            exact
-            path="/RegisterCategoria"
-            element={<RegisterCategoria />}
-          />
-          <Route
-            exact
-            path="/RegisterProductos"
-            element={<RegisterProductos />}
-          />
-          <Route exact path="/RegisterPuntos" element={<RegisterPuntos />} />
-          <Route exact path="/" element={<Home />} />
-
-          <Route path="/usuarios">
-            <Route index element={<List />} />
-            {/* <Route path=":userId" element={<Single />} /> */}
-          </Route>
-
-          <Route path="/productos">
-            <Route index element={<Productos />} />
-          </Route>
-
-          <Route path="/categorias">
-            <Route index element={<Categorias />} />
-          </Route>
-
-          <Route path="/puntos">
-            <Route index element={<PuntosVentas />} />
-          </Route>
-          
-          <Route path="/:id">
-            <Route index element={<Profile />} />
-          </Route>
-
-
-
-
-
-
+          <Route path="/" element={<Home />} />
+          <Route path="/usuarios" element={<List />} />
+          <Route path="/usuarios/:id" element={<Profile />} />
+          <Route path="/RegisterUsuario" element={<RegisterUsuario />} />
+          <Route path="/puntos" element={<PuntosVentas />} />
+          <Route path="/RegisterPuntos" element={<RegisterPuntos />} />
+          <Route path="/categorias" element={<Categorias />} />
+          <Route path="/RegisterCategoria" element={<RegisterCategoria />} />
+          <Route path="/productos" element={<Productos />} />
+          <Route path="/RegisterProductos" element={<RegisterProductos />} />
 
           <Route path="/ordenes" element={<Order />} />
           <Route path="/stock" element={<Inventory />} />
           <Route path="/stock/nuevo" element={<AddInventory />} />
 
-
-          <Route path="/*" element={<Navigate to="/" />} />
-
+          <Route path="/*" element={<Navigate to="/admin" />} />
         </Routes>
 
         {/* Mis rutas */}

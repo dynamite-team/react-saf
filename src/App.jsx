@@ -1,13 +1,8 @@
-//import Rutas from "./router/Rutas";
-
-//redux import
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
-//
-
 import { AppRouter } from "./router/AppRouter";
 
-function App() {
+const App = () => {
   return (
     <>
       <Provider store={store}>
@@ -15,6 +10,6 @@ function App() {
       </Provider>
     </>
   );
-}
+};
 
 export default App;

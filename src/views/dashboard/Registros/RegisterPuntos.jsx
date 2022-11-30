@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import { fetchRegistroPuntos } from "../../../redux/actions/puntos";
 
-import Sidebar from "../../../components/navbars/Navhorizontal";
+//import Sidebar from "../../../components/navbars/Navhorizontal";
 
 const RegistroPuntos = ({ fetchRegistroPuntos }) => {
   const [formRegisterValues, handleRegisterInputChange] = useForm({
@@ -29,7 +29,7 @@ const RegistroPuntos = ({ fetchRegistroPuntos }) => {
   return (
     <>
       <div className="home">
-        <Sidebar />
+        {/* <Sidebar /> */}
         <div className="homeContainer">
           <div class="wrapper2 ">
             <div id="formContent">

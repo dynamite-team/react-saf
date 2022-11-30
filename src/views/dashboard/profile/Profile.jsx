@@ -1,6 +1,6 @@
 import "./single.scss";
 
-import Sidebar from "../../../components/navbars/Navhorizontal";
+//import Sidebar from "../../../components/navbars/Navhorizontal";
 
 import axios from "axios";
 
@@ -32,7 +32,7 @@ const Profile = () => {
     <>
       <>
         <div className="single ">
-          <Sidebar />
+          {/* <Sidebar /> */}
           <div className="singleContainer">
             <div class="containersingle">
               <header>

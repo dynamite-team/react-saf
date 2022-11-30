@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MainRoutes } from "../views/main/routes/MainRoutes";
 import { AuthRoutes } from "../views/auth/routes/AuthRoutes";
 import { DashboardRoutes } from "../views/dashboard/routes/DashboardRoutes";
 import { PrivateRoutes } from "./PrivateRoutes";
@@ -17,6 +18,8 @@ export const AppRouter = () => {
     dispatch(startChecking());
   }, [dispatch]);
 
+  console.log("hola", checking, uid);
+
   if (checking) {
     return <Spinner />;
   }
@@ -24,8 +27,9 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/*" element={<MainRoutes />} />
         <Route
-          path="/auth/*"
+          path="/admin/auth/*"
           element={
             <PublicRoutes isLogged={!!uid}>
               <AuthRoutes />
@@ -33,7 +37,7 @@ export const AppRouter = () => {
           }
         />
         <Route
-          path="/*"
+          path="/admin/*"
           element={
             <PrivateRoutes isLogged={!!uid}>
               <DashboardRoutes />
@@ -41,7 +45,7 @@ export const AppRouter = () => {
           }
         />
         <Route
-          path="/pos/*"
+          path="/admin/pos/*"
           element={
             <PrivateRoutes isLogged={!!uid}>
               <PosRouter />

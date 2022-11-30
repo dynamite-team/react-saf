@@ -3,7 +3,7 @@ import "../../../styles/StyleForm.css";
 import { useForm } from "../../../hooks/useForm";
 import { connect } from "react-redux";
 
-import Sidebar from "../../../components/navbars/Navhorizontal";
+//import Sidebar from "../../../components/navbars/Navhorizontal";
 
 import { getCategorias } from "../../../redux/actions/verCategorias";
 
@@ -104,7 +104,7 @@ const RegisterProductor = ({
       {!loading ? (
         <>
           <div className="home">
-            <Sidebar />
+           {/*  <Sidebar /> */}
             <div className="homeContainer">
               <div class="wrapper2 ">
                 <div id="formContent">
