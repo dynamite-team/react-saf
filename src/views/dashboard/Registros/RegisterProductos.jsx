@@ -104,7 +104,7 @@ const RegisterProductor = ({
       {!loading ? (
         <>
           <div className="home">
-           {/*  <Sidebar /> */}
+            {/*  <Sidebar /> */}
             <div className="homeContainer">
               <div class="wrapper2 ">
                 <div id="formContent">

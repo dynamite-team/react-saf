@@ -21,7 +21,10 @@ export default function Home() {
           </h1>
           <img className="imagen-hero" width={400} height={460} src={logo} />
         </div>
-        <div class="svg-hero" style={{ height: "150px", overflow: "hidden" }}>
+        <div
+          className="svg-hero"
+          style={{ height: "150px", overflow: "hidden" }}
+        >
           <svg
             className="svg-hero"
             viewBox="0 0 500 150"
@@ -90,7 +93,7 @@ export default function Home() {
       </div>
 
       {/* -----------FOOTER-------------- */}
-      <div class="svg-hero" style={{ height: "150px", overflow: "hidden" }}>
+      <div className="svg-hero" style={{ height: "150px", overflow: "hidden" }}>
         <svg
           className="svg-hero"
           viewBox="0 0 500 150"

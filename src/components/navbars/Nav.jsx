@@ -1,7 +1,6 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../assets/img/estrella.png'
-
+import logo from "../../assets/img/estrella.png";
 
 export default function Nav() {
   return (
@@ -13,7 +12,7 @@ export default function Nav() {
               src={logo}
               width={60}
               height={60}
-              style={{ "margin-top": "8%", marginLeft: "55%" }}
+              style={{ marginTop: "8%", marginLeft: "55%" }}
             />
           </a>
           <button
@@ -29,12 +28,12 @@ export default function Nav() {
           </button>
           <div
             className="d-grid gap-2 d-md-flex justify-content-md-end"
-            style={{ "margin-top": "-3.5%", marginRight: "2%" }}
+            style={{ marginTop: "-3.5%", marginRight: "2%" }}
           >
             <Link
               type="button"
               className="btn btn-outline-light me-md-2"
-              to="/Iniciosesion"
+              to="/admin/auth/login"
             >
               Inicio sesion
             </Link>

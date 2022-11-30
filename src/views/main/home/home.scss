@@ -1,5 +1,5 @@
 .hero {
-    background-image: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(19,56,156,0.8407738095238095) 0%, rgba(25,112,186,0.7791491596638656) 49%, rgba(32,42,222,0.8323704481792717) 100%);
+    background-image: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(19, 56, 156, 0.8407738095238095) 0%, rgba(25, 112, 186, 0.7791491596638656) 49%, rgba(32, 42, 222, 0.8323704481792717) 100%);
     width: 100%;
     height: 90vh;
     background-repeat: no-repeat;
@@ -60,21 +60,23 @@
 }
 
 .segunda-seccion {
-    
+
     display: flex;
     flex-direction: row;
     padding: 40px;
     margin-top: 5%;
-    
-   
 
-    .div-seccion{
+
+
+    .div-seccion {
         width: 50%;
-        
+
     }
+
     .texto-catalogo {
         font-size: 1.3rem;
     }
+
     .boton-catalogo {
         border-radius: 20px;
         width: 150px;
@@ -87,22 +89,24 @@
         margin-top: 3%;
     }
 
-    .formulario-contacto{
+    .formulario-contacto {
         width: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        
-      
-        .titulo-form-contacto{
+
+
+        .titulo-form-contacto {
             font-size: 1.3rem;
         }
-        .input-form-contacto{
+
+        .input-form-contacto {
             border-radius: 20px;
             border-width: 1px;
             width: 40%;
         }
-        .boton-contacto{
+
+        .boton-contacto {
             border-radius: 20px;
             width: 100px;
             height: 50px;
@@ -123,29 +127,29 @@
     justify-content: space-between;
     color: white;
 
-    .texto-footer{
+    .texto-footer {
         font-size: 1rem;
         text-align: justify;
         margin-bottom: 1%;
     }
-    
+
     .info-contacto {
         padding: 50px;
         color: white;
         display: flex;
         flex-direction: column;
-    
+
         .titulo-footer {
             font-size: 1.3rem;
             font-weight: bolder;
         }
 
-        .vinculo{
+        .vinculo {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
 
-            .vinculo-label{
+            .vinculo-label {
                 margin: auto;
                 margin-left: 10px;
                 color: white;

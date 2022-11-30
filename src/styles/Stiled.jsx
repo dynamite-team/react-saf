@@ -1,19 +1,7 @@
-import React from 'react'
+import React from "react";
 
 import styled from "styled-components";
 
-
-        
-
-export default function Stiled () {
-
-
-
-  return (
-    <>
-    
-    
-    </>
-  )
+export default function Stiled() {
+  return <></>;
 }
-

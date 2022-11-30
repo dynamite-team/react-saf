@@ -1,6 +1,7 @@
 .single {
   display: flex;
   width: 100%;
+
   .singleContainer {
     flex: 6;
 
@@ -32,7 +33,7 @@
           display: flex;
           gap: 20px;
           position: relative;
-         left: 25%;
+          left: 25%;
 
 
           .itemImg {
@@ -40,7 +41,7 @@
             height: 200px;
             border-radius: 50%;
             object-fit: cover;
-           
+
             left: 15%;
             top: -100%;
           }
@@ -49,7 +50,7 @@
             .itemTitle {
               margin-bottom: 10px;
               color: #555;
-             
+
             }
 
             .detailItem {
@@ -86,7 +87,7 @@
       font-size: 16px;
       color: lightgray;
       margin-bottom: 20px;
-      
+
     }
   }
 }
@@ -96,12 +97,12 @@
 
 
 .containersingle {
- 
- 
 
- min-width: 100vh;
+
+
+  min-width: 100vh;
   background-color: #fff;
-  
+
 }
 
 header {
@@ -252,7 +253,8 @@ main {
     font-weight: 500;
     color: #888;
 
-    &:hover, &:nth-child(1) {
+    &:hover,
+    &:nth-child(1) {
       color: #999;
       border-bottom: 2px solid #999;
     }
@@ -290,4 +292,3 @@ main {
     text-align: center;
   }
 }
-

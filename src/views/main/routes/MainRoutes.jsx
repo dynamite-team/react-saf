@@ -10,7 +10,6 @@ import Home from "../home/Home";
 import Catalogo from "../catalogo/catalogo";
 
 export const MainRoutes = () => {
-  console.log("holaaaa");
   return (
     <Routes>
       <Route path="/" element={<Home />} />

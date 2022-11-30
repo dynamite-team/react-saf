@@ -1,29 +1,9 @@
-import React from 'react'
+import React from "react";
 
-import { 
-Link
+import { Link } from "react-router-dom";
 
- }  from "react-router-dom";
+export default function Buttons(props) {
+  const { label } = props;
 
-export default function Buttons (props) {
-
-    const {
-        label
-    }
-        =props
-
-  return (
-
-<>
-
-
-
-
-
-</>
-   
-
-
-  )
+  return <></>;
 }
-

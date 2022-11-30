@@ -18,8 +18,6 @@ export const AppRouter = () => {
     dispatch(startChecking());
   }, [dispatch]);
 
-  console.log("hola", checking, uid);
-
   if (checking) {
     return <Spinner />;
   }

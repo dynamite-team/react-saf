@@ -38,7 +38,10 @@ const Card = ({ img, nombre, precio, uid, designado, destino }) => {
           <div className="card-price step--1">Precio: {`$${precio}`}</div>
         </div>
 
-        <button className="step--1" onClick={() => dispatch(addCart(uid, designado))}>
+        <button
+          className="step--1"
+          onClick={() => dispatch(addCart(uid, designado))}
+        >
           Agregar
         </button>
       </div>

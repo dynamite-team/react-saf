@@ -18,7 +18,6 @@ const Home = () => {
 
   const cargarStats = async () => {
     const resp = await fetchSinToken(`api/v1/ordenes/stats`);
-    console.log(resp);
     const { seisMeses, anteriorActualMes, productoMes, esteDia, estaSemana } =
       await resp.json();
     if (resp.ok) {

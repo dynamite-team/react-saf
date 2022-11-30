@@ -37,38 +37,38 @@ const Sidebar = () => {
       <div className="center">
         <ul>
           <p className="title">Principal</p>
-          <Link style={{ textDecoration: "none" }} to="/">
+          <Link style={{ textDecoration: "none" }} to="/admin/">
             <li>
               <DashboardIcon className="icon" />
               <span>Dashboard</span>
             </li>
           </Link>
           <p className="title">Listas</p>
-          <Link style={{ textDecoration: "none" }} to="/usuarios">
+          <Link style={{ textDecoration: "none" }} to="/admin/usuarios">
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Usuarios</span>
             </li>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="/puntos">
+          <Link style={{ textDecoration: "none" }} to="/admin/puntos">
             <li>
               <StoreMallDirectoryIcon className="icon" />
               <span>Puntos</span>
             </li>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="/categorias">
+          <Link style={{ textDecoration: "none" }} to="/admin/categorias">
             <li>
               <StyleIcon className="icon" />
               <span>Categoría</span>
             </li>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="/productos">
+          <Link style={{ textDecoration: "none" }} to="/admin/productos">
             <li>
               <EggIcon className="icon" />
               <span>Productos</span>
             </li>
           </Link>
-          <Link style={{ textDecoration: "none" }} to="/ordenes">
+          <Link style={{ textDecoration: "none" }} to="/admin/ordenes">
             <li>
               <ListAltIcon className="icon" />
               <span>Ordenes</span>
@@ -79,14 +79,14 @@ const Sidebar = () => {
             <span>Estadistícas</span>
           </li> */}
           <p className="title">Inventario</p>
-          <Link style={{ textDecoration: "none" }} to="/stock">
+          <Link style={{ textDecoration: "none" }} to="/admin/stock">
             <li>
               <InventoryIcon className="icon" />
               <span>Inventario</span>
             </li>
           </Link>
           <p className="title">Facturación</p>
-          <Link style={{ textDecoration: "none" }} to="/pos">
+          <Link style={{ textDecoration: "none" }} to="/admin/pos">
             <li>
               <PaymentIcon className="icon" />
               <span>Cajero</span>

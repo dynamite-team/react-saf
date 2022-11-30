@@ -20,18 +20,17 @@ const data = [
 /* #8fb5c4 */
 const Chart = ({ aspect, title }) => {
   return (
-    <div className="chart " style={{	border: "1px solid #045694"}} >
+    <div className="chart " style={{ border: "1px solid #045694" }}>
       <div className="title">{title}</div>
-      <ResponsiveContainer width="100%" aspect={aspect} >
+      <ResponsiveContainer width="100%" aspect={aspect}>
         <AreaChart
           width={730}
           height={250}
           data={data}
           margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-          
         >
           <defs>
-            <linearGradient id="total" x1="0" y1="0" x2="0" y2="1" >
+            <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#045694" stopOpacity={0.8} />
               <stop offset="95%" stopColor="#045694" stopOpacity={0} />
             </linearGradient>
