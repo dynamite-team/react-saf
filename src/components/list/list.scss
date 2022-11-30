@@ -1,0 +1,64 @@
+.list-container {
+  align-content: space-around;
+  animation-name: apearCart;
+  animation-duration: 0.7s;
+  background-color: #f2f2f2;
+  border: 1px solid white;
+  border-radius: 1rem;
+  display: flex;
+  min-width: 250px;
+  margin: 1rem;
+  padding: .5rem;
+
+
+  .list-img {
+    align-items: center;
+    display: flex;
+    flex: 6 10%;
+
+    img {
+      border: 1px solid black;
+      border-radius: .5rem;
+    }
+  }
+
+  .list-name {
+    margin: var(--space-2xs);
+  }
+
+  .cantidades {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    min-width: 20%;
+
+    .list-icon {
+      color: #003667;
+      display: flex;
+      justify-content: space-around;
+
+      .icon {
+        &:hover {
+          color: #016764;
+          opacity: 80%;
+          transition: 0.5s;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .list-price {
+      text-align: center;
+    }
+  }
+}
+
+@keyframes apearCart {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

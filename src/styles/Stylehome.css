@@ -1,0 +1,289 @@
+/* body{
+   
+    background-color:rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+    
+  
+} */
+
+
+
+
+.inicio{
+    
+ 
+   position: absolute;
+   left: 0px;
+    width:1349px;
+    height:587px;
+
+}
+
+
+.titulo{
+    
+   
+
+	text-align:center;
+	font-size:48px;
+   top: -150px;
+    left:500px;
+	position:absolute;
+	
+}
+
+.texto{
+    
+    
+   position:absolute;
+   text-align: center;
+   top: -55px;
+   left: 200px;
+   width:677px;
+   height:150px;
+
+}
+
+.vl {
+    border-left: 5px solid rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+    height: 590px;
+    position:absolute;
+    left: 550px;
+    top:20px;
+    border-radius: 5px;
+  }
+
+  .hl{
+
+    border-top: 5px solid rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+    position:absolute;
+    top: 320px;
+    left: 555px;
+    border-radius: 5px;
+
+
+  }
+
+  .hld{
+
+    border-top: 5px solid rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+    position:absolute;
+    border-radius: 5px;
+    top: 320px;
+    left: 1px;
+
+
+  }
+
+
+.fa-ul{
+
+    color:rgba(6.270233541727066, 148.47802072763443, 235.02871245145798, 1);
+
+}
+
+
+
+
+
+ .wrapper{
+   position: absolute;
+    align-items: center;
+    justify-content: center;
+    top:200px;
+    right:-0px;
+  display: flex;
+} 
+.wrapper .static-txt{
+   
+  color: #fff;
+  font-size: 40px;
+  position: relative;
+  left: 450px;
+  font-weight: 400;
+}
+.wrapper .dynamic-txts{
+  position: relative;
+  margin-left: 35px;
+  height: 80px;
+  line-height: 50px;
+  overflow: hidden;
+  top: 85px;
+  right: 100px;
+}
+.dynamic-txts li{
+    list-style: none;
+    color: #fff;
+    font-size: 60px;
+    font-weight: 200;
+    position: relative;
+    top: -0px;
+    animation: slide 12s steps(4) infinite;
+}  
+@keyframes slide {
+  100%{
+    top: -360px;
+  }
+}
+.dynamic-txts li span{
+  position: relative;
+  margin: 5px 0;
+  line-height: 90px;
+}
+.dynamic-txts li span::after{
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+  ;
+
+  animation: typing 3s steps(10) infinite;
+}
+@keyframes typing {
+  40%, 60%{
+    left: calc(100% + 30px);
+  }
+  100%{
+    left: 0;
+  }
+}
+
+
+
+/* CAROUSEL */
+
+
+.icon-cards__content.step-animation {
+  animation: carousel 8s infinite steps(1) forwards;
+}
+
+.icon-cards__item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 60vw;
+  height: 80vw;
+  max-width: 380px;
+  max-height: 390px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .1);
+  border-radius: 6px;
+  transform-origin: center;
+}
+.icon-cards__item:nth-child(1) {
+  background-color:rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+  transform: rotateY(0) translateZ(35vw);
+}
+.icon-cards__item:nth-child(2) {
+  background-color:rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+  transform: rotateY(120deg) translateZ(35vw);
+}
+.icon-cards__item:nth-child(3) {
+  background-color:rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+  transform: rotateY(240deg) translateZ(35vw);
+}
+
+
+@keyframes carousel {
+  0%,  17.5%  { transform: translateZ(-35vw) rotateY(0); }
+  27.5%, 45%  { transform: translateZ(-35vw) rotateY(-120deg); }
+  55%, 72.5%  { transform: translateZ(-35vw) rotateY(-240deg); }
+  82.5%, 100% { transform: translateZ(-35vw) rotateY(-360deg); }
+}
+
+
+
+
+
+.iconscarne { 
+	width:100px;
+	height:100px;
+	background-image:url(./../assets/img/CutsOfBeef.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+
+}
+
+.iconslacteos { 
+	width:100px;
+	height:100px;
+	background-image:url(./../assets/img/TetraPak.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+}
+
+.iconsverdufrutas { 
+	width:100px;
+	height:100px;
+	background-image:url(./../assets/img/TreePlanting.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+  position: relative;
+  left: 80px;
+  top: 10px;
+}
+
+.iconsharinalegum{ 
+	width:100px;
+	height:100px;
+	background-image:url(./../assets/img/BreadandRye.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+  position: relative;
+  left: 80px;
+  top: 10px;
+
+}
+
+.iconsbolsones{ 
+	width:100px;
+	height:100px;
+	background-image:url(./../assets/img/ShoppingBag.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+  position: relative;
+  left: 70px;
+  top: 10px;
+
+}
+
+.iconsdulces{ 
+	width:90px;
+	height:100px;
+	background-image:url(./../assets/img/Jam.png);
+	background-repeat:no-repeat;
+	background-size:cover;
+  position: relative;
+  left: 80px;
+  top: 10px;
+
+}
+
+ .static-txt2{
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top:700px;
+  
+display: flex;
+  color:rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+ font-size: 40px;
+ right: 450px;
+ font-weight: 400;
+
+}
+ .static-txtsubtit{
+  
+  color:rgba(88.00000235438347, 116.00000068545341, 231.00000143051147, 1);
+	width:900px;
+	height:100px;
+  font-family:Arial, Helvetica, sans-serif;
+	text-align:center;
+	font-size:25px;
+	letter-spacing:0;
+  position: relative;
+  left: 100px;
+  top:1200px;
+}
