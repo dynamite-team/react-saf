@@ -93,14 +93,17 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="title">Usuario</p>
+          <Link style={{ textDecoration: "none" }} to="/admin/usuarios/:id">
           <li>
             <AccountCircleIcon className="icon" />
             <span>Perfil</span>
           </li>
+          </Link>
           <li>
             <SettingsIcon className="icon" />
             <span>Configuración</span>
           </li>
+      
           <Link
             className="nav-link"
             style={{ textDecoration: "none" }}

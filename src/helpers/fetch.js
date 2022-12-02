@@ -3,7 +3,7 @@ const localUrl = "http://localhost:5000";
 const testUrl = "http://192.168.0.55:5000";
 
 const fetchSinToken = (endpoint, data, method = "GET") => {
-  const url = `${testUrl}/${endpoint}`;
+  const url = `${localUrl}/${endpoint}`;
 
   if (method === "GET") {
     return fetch(url);
@@ -19,7 +19,7 @@ const fetchSinToken = (endpoint, data, method = "GET") => {
 };
 
 const fetchConToken = (endpoint, data, method = "GET") => {
-  const url = `${testUrl}/${endpoint}`;
+  const url = `${localUrl}/${endpoint}`;
   const token = localStorage.getItem("token") || "";
 
   //SI ES GET ENTONCES MANDA EL TOKEN
@@ -44,7 +44,7 @@ const fetchConToken = (endpoint, data, method = "GET") => {
 };
 
 const fetchConTokenFiles = (endpoint, data, method = "GET") => {
-  const url = `${testUrl}/${endpoint}`;
+  const url = `${localUrl}/${endpoint}`;
 
   const token = localStorage.getItem("token") || "";
 

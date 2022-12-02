@@ -47,7 +47,7 @@ const Chart = ({ aspect, title, chartStats }) => {
   });
 
   return (
-    <div className="chart">
+    <div className="chart" style={{	border: "1px solid #045694"}}>
       <div className="title">{title}</div>
       <ResponsiveContainer width="100%" aspect={aspect}>
         <AreaChart
@@ -58,8 +58,8 @@ const Chart = ({ aspect, title, chartStats }) => {
         >
           <defs>
             <linearGradient id="total" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-              <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+              <stop offset="5%" stopColor="#045694" stopOpacity={0.8} />
+              <stop offset="95%" stopColor="#045694" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="name" stroke="gray" />
@@ -68,7 +68,7 @@ const Chart = ({ aspect, title, chartStats }) => {
           <Area
             type="monotone"
             dataKey="Total"
-            stroke="#8884d8"
+            stroke="#045694"
             fillOpacity={1}
             fill="url(#total)"
           />

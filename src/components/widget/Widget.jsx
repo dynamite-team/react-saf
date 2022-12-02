@@ -90,7 +90,7 @@ const Widget = ({ type, valores }) => {
   }
 
   return (
-    <div className="widget">
+    <div className="widget"  style={{	border: "1px solid #045694"}}>
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">

@@ -18,131 +18,107 @@ import { useEffect, useState } from "react";
 import Spinner from "../../../layout/Spinner";
 
 import { getPuntos } from "../../../redux/actions/verPuntos";
+import { DataGrid } from "@mui/x-data-grid";
+import { fetchSinToken } from "../../../helpers/fetch";
+import Box from '@mui/material/Box';
+const columns = [
+  
+  { field: "nombre", headerName: "Nombre", headerClassName: 'super-app-theme--header', width: 200 },
+  { field: "departamento", headerName: "Departamento", headerClassName: 'super-app-theme--header', width: 200 },
+  { field: "barrio", headerName: "Barrio", headerClassName: 'super-app-theme--header', width: 200 },
+  { field: "descripcion", headerName: "Descripcion", headerClassName: 'super-app-theme--header', width: 200 },
+  
+];
 
-const Puntos = ({
-  getPuntos,
-  punto: {
-    puntos: { puntos },
-    loading,
-  },
-}) => {
+const Puntos = () => {
+ 
+  const [data, setData] = useState([]);
+
+  const cargarList = async () => {
+    const resp = await fetchSinToken(`api/v1/puntos/?desde=0&hasta=5`);
+
+    const { tabla } = await resp.json();
+
+    if (resp.ok) {
+      setData(tabla);
+    }
+  };
+
   useEffect(() => {
-    getPuntos();
+    cargarList();
   }, []);
 
-  console.log(puntos);
+  const actionColumn = [
+    {
+      align: "center",
+      headerAlign: "center",
+      field: "action",
+      headerName: "Action",
+      headerClassName: 'super-app-theme--header',
+      flex: 1.5,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <Link to="/users/test" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Ver</div>
+            </Link>
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Borrar
+            </div>
+          </div>
+        );
+      },
+    },
+  ];
+
+  console.log(data);
 
   return (
     <>
-      {!loading ? (
+ 
         <>
-          <div className="list">
-            {/* <Sidebar /> */}
-            <div className="listContainer">
-              <div className="datatable">
-                <div className="datatableTitle">
-                  <br />
-                  <h1 style={{ textAlign: "center" }}>PUNTOS DE VENTAS</h1>
-                  <hr style={{ color: "black" }}></hr>
+         
 
-                  <div className="container mt-5">
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                      <Link
-                        type="button"
-                        className="btn btn-primary btn-left me-md-2"
-                        to="/RegisterPuntos"
-                      >
-                        Registrar Puntos de Ventas
-                      </Link>
+
+
+          <div className="order">
+    <div className="order-container">
+      <div className="datatable">
+        <div className="datatableTitle">Puntos de ventas</div>
+        <div className="buttonPunto d-grid gap-2 d-md-flex justify-content-md-end">
+                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/admin/RegisterPuntos">Registrar Punto</Link>
                     </div>
-
-                    <br></br>
-                    <br></br>
-                    <br></br>
-
-                    <h1 style={{ textAlign: "center" }}>
-                      TABLA PUNTOS DE VENTAS
-                    </h1>
-                    <hr style={{ color: "black" }}></hr>
-
-                    <MDBTable align="middle" bordered borderColor="info">
-                      <MDBTableHead>
-                        <tr>
-                          <th scope="col">Direccion</th>
-                          <th scope="col">Departamento</th>
-                          <th scope="col">Barrio</th>
-                          <th scope="col">Acciones</th>
-                        </tr>
-                      </MDBTableHead>
-                      <MDBTableBody>
-                        {puntos.map((punto) => (
-                          <tr>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">{punto.nombre}</p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">
-                                    {punto.departamento}
-                                  </p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">{punto.barrio}</p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <MDBBtn color="link" rounded size="sm">
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-warning mx-3"
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-danger"
-                                >
-                                  Delete
-                                </button>
-                              </MDBBtn>
-                            </td>
-                          </tr>
-                        ))}
-                      </MDBTableBody>
-                    </MDBTable>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+                    <Box
+      sx={{
+        height: 400,
+        width: '100%',
+        '& .super-app-theme--header': {
+          backgroundColor: '#045694',
+          color: '#fff',
+        },
+      }}
+    >            
+        <DataGrid
+          className="datagrid"
+          rows={data}
+          columns={columns.concat(actionColumn)}
+          pageSize={5}
+          rowsPerPageOptions={[5]}
+          checkboxSelection
+        />
+        </Box>
+      </div>
+    </div>
+  </div>
         </>
-      ) : (
-        <Spinner />
-      )}
+   
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  punto: state.punto,
-});
 
-export default connect(mapStateToProps, {
-  getPuntos,
-})(Puntos);
+
+export default Puntos

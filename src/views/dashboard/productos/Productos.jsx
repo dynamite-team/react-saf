@@ -1,181 +1,154 @@
 import "./productos.scss";
 
-//import Sidebar from "../../../components/navbars/Navhorizontal";
-import {
-  MDBBadge,
-  MDBBtn,
-  MDBTable,
-  MDBTableHead,
-  MDBTableBody,
-} from "mdb-react-ui-kit";
-import { Button, Title, TextInput, Modal } from "@mantine/core";
+
+import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
+import Box from '@mui/material/Box';
 
-import { connect, useSelector } from "react-redux";
-//import verUsuarios from "../../redux/actions/usuarios";
-import { useEffect, useState } from "react";
+import { Image, Transformation } from "cloudinary-react";
 import Spinner from "../../../layout/Spinner";
 
 import { getProductos } from "../../../redux/actions/verProductos";
 
-import { Image, Transformation } from "cloudinary-react";
-
-const Productos = ({
-  getProductos,
-  producto: {
-    productos: { productos },
-    loading,
+import { DataGrid } from "@mui/x-data-grid";
+import { fetchSinToken } from "../../../helpers/fetch";
+const columns = [
+  {
+    field: "img",
+    headerName: "Foto ",
+    flex: 1,
+    headerClassName: 'super-app-theme--header',
+    renderCell: (params) => {
+      return (
+        <div
+          className="cellWithImg"
+           
+          style={{
+           
+            display: "flex",
+      
+            justifyContent: "center",
+           
+            
+         
+          }}
+        >
+          <Image
+          
+            className="cellImg"
+            cloudName="dawjd5cx8"
+            publicId={params.row.img}
+            alt="avatar"
+          >
+            <Transformation
+              height="50"
+              width="50"
+          
+      
+            />
+          </Image>
+      
+        </div>
+      );
+    },
   },
-}) => {
-  //const [encontrado, setEncontrado] = useState();
+  { field: "nombre", headerName: "Nombre",   headerClassName: 'super-app-theme--header', width: 200 },
+  { field: "precio", headerName: "Precio",    headerClassName: 'super-app-theme--header',width: 150 },
+  { field: "lote", headerName: "Lote",   headerClassName: 'super-app-theme--header', width: 150 },
+  { field: "proveedor", headerName: "Proveedor",   headerClassName: 'super-app-theme--header', width: 150 },
+  { field: "usuario", headerName: "Usuario",    headerClassName: 'super-app-theme--header',width: 130 },
+];
+const Productos = () => {
+  const [data, setData] = useState([]);
+
+  const cargarList = async () => {
+    const resp = await fetchSinToken(`api/v1/productos/?desde=0&limite=10`);
+
+    const { tabla } = await resp.json();
+
+    if (resp.ok) {
+      setData(tabla);
+    }
+  };
 
   useEffect(() => {
-    getProductos();
+    cargarList();
   }, []);
 
-  console.log(productos);
-
-  return (
-    <>
-      {!loading ? (
-        <>
-          <div className="list">
-            {/*  <Sidebar /> */}
-            <div className="listContainer">
-              <div className="datatable">
-                <div className="datatableTitle">
-                  <br />
-                  <h1 style={{ textAlign: "center" }}>PRODUCTOS</h1>
-                  <hr style={{ color: "black" }}></hr>
-
-                  <div className="container mt-5">
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                      <Link
-                        type="button"
-                        className="btn btn-primary btn-left me-md-2"
-                        to="/RegisterProductos"
-                      >
-                        Registrar Productos
-                      </Link>
-                    </div>
-
-                    <br></br>
-                    <br></br>
-                    <br></br>
-
-                    <h1 style={{ textAlign: "center" }}>TABLA PRODUCTOS</h1>
-                    <hr style={{ color: "black" }}></hr>
-
-                    <MDBTable align="middle" bordered borderColor="info">
-                      <MDBTableHead>
-                        <tr>
-                          <th scope="col"> </th>
-                          <th scope="col">Productos</th>
-                          <th scope="col">Precio</th>
-                          <th scope="col">Categoria</th>
-                          <th scope="col">Acciones</th>
-                        </tr>
-                      </MDBTableHead>
-                      <MDBTableBody>
-                        {productos.map((producto) => (
-                          <tr>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">
-                                    <Image
-                                      className="cellImg"
-                                      cloudName="dawjd5cx8"
-                                      publicId={producto.img}
-                                      alt="avatar"
-                                    >
-                                      <Transformation
-                                        height="100"
-                                        width="100"
-                                        //radius="max"
-                                        aspectRatio="1.5"
-                                        crop="fill"
-                                      />
-                                    </Image>
-
-                                    {/* {producto.img} */}
-                                  </p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">
-                                    {producto.nombre}
-                                  </p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">
-                                    {producto.precio}
-                                  </p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">
-                                    {producto.categoria.nombre}
-                                  </p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <MDBBtn color="link" rounded size="sm">
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-warning mx-3"
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-danger"
-                                >
-                                  Delete
-                                </button>
-                              </MDBBtn>
-                            </td>
-                          </tr>
-                        ))}
-                      </MDBTableBody>
-                    </MDBTable>
-                  </div>
-                </div>
-              </div>
+  const actionColumn = [
+    {
+      align: "center",
+      headerAlign: "center",
+      field: "action",
+      headerName: "Action",
+      headerClassName: 'super-app-theme--header',
+      flex: 1.5,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <Link to="/users/test" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Ver</div>
+            </Link>
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Borrar
             </div>
           </div>
+        );
+      },
+    },
+  ];
+
+
+ 
+  return (
+    <>
+     
+        <>
+
+<div className="order">
+    <div className="order-container">
+      <div className="datatable">
+        <div className="datatableTitle">Productos</div>
+
+        <div class="buttonList d-grid gap-2 d-md-flex justify-content-md-end">
+                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/admin/RegisterProductos">Registrar producto</Link>
+                    </div>
+        <Box
+      sx={{
+        height: 600,
+        width: '100%',
+        '& .super-app-theme--header': {
+          backgroundColor: '#045694',
+          color: '#fff',
+
+        },
+      
+      }}
+    >
+        <DataGrid
+          className="datagrid"
+          rows={data}
+          columns={columns.concat(actionColumn)}
+          pageSize={8}
+          rowsPerPageOptions={[8]}
+          checkboxSelection
+          
+        />
+        </Box>
+      </div>
+    </div>
+  </div>
+     
+   
         </>
-      ) : (
-        <Spinner />
-      )}
+  
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  producto: state.producto,
-});
 
-export default connect(mapStateToProps, {
-  getProductos,
-})(Productos);
+export default Productos

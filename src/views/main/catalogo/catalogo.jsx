@@ -23,9 +23,9 @@ const Title = styled.h1`
   text-align: center;
   color: blue;
   padding: 20px;
-  font-size: 2.5rem;
+  font-size: 2rem;
   @media screen and (max-width: 900px) {
-    font-size: 2rem;
+    font-size: 1.3rem;
     text-align: center;
   }
 `;

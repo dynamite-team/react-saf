@@ -27,7 +27,7 @@ const CarruselPublicidad = () => {
 
     const items = ArrayImagenes.map((item) => {
         return <div key={item.id} style={{ 'width': '95%', 'height': '10%'}}>
-            <img src={item.img}  style={{ 'objectFit': 'cover', 'width': '100%', 'height': '250px' }}/>
+            <img src={item.img}  style={{ 'objectFit': 'cover', 'width': '100%', 'height': '250px', 'borderRadius': '20px' }}/>
         </div>
     })
 

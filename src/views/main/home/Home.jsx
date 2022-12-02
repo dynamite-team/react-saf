@@ -19,7 +19,7 @@ export default function Home() {
           <h1 className="titulo-hero">
             Bienvenido a Soberanía Alimentaria Formoseña
           </h1>
-          <img className="imagen-hero" width={400} height={460} src={logo} />
+          <img className="imagen-hero" width={250} height={300} src={logo} />
         </div>
         <div
           className="svg-hero"
@@ -42,7 +42,7 @@ export default function Home() {
       {/* -------------BODY------------- */}
 
       <div className="divisor">
-        <h2 className="divisor-titulo">Conocé este proyecto</h2>
+        <div className="divisor-titulo">Conocé este proyecto</div>
       </div>
       <div className="body-home">
         <div className="cards">
@@ -75,7 +75,7 @@ export default function Home() {
             Si quieres ver los productos que puedes encontrar en los stands del
             programa en tu zona te invitamos a que veas nuestro catálogo
           </h4>
-          <a href="/Catalogo">
+          <a href="/catalogo">
             <button className="boton-catalogo">Ver catálogo</button>
           </a>
         </div>

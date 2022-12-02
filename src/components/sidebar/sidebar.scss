@@ -1,12 +1,8 @@
 .sidebar {
-  background-color: white;
-  border-right: 0.5px solid #888;
+  background-color: #045694;
+  border-right: 0.5px solid #fff;
   flex: 1;
-  height: 100vh;
-
-  /*   left: 0;
-  position: sticky;
-  top: 0; */
+  height: 150vh;
 
   .top {
     align-items: center;
@@ -15,14 +11,14 @@
     justify-content: center;
 
     .logo {
-      color: midnightblue;
+      color: white;
       font-size: 20px;
       font-weight: bold;
     }
   }
 
   hr {
-    border: 0.5px solid #888;
+    border: 0.5px solid #fff;
     height: 0;
   }
 
@@ -37,7 +33,7 @@
       flex-direction: column;
 
       .title {
-        color: #888;
+        color: #fff;
         font-size: 10px;
         font-weight: bold;
         margin-top: 15px;
@@ -51,16 +47,16 @@
         cursor: pointer;
 
         &:hover {
-          background-color: #ece8ff;
+          background-color: rgba(39.99114789068699, 153.13874423503876, 215.9154948592186, 1);
         }
 
         .icon {
-          color: #888;
+          color: #ffff;
           font-size: 18px;
         }
 
         span {
-          color: midnightblue;
+          color: white;
           font-size: 13px;
           font-weight: 600;
           margin-left: 10px;

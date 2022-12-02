@@ -9,36 +9,36 @@ const Navbar = () => {
   const { uid, img, nombre } = useSelector((state) => state.authReducer);
 
   return (
-    <div className="navbar">
-      <div className="wrapper">
-        <div className="search">
-          <input type="text" placeholder="Buscar..." />
-          <SearchOutlineIcon className="icon" />
+    <div className="navbarPanel">
+    <div className="wrapperPanel">
+      <div className="searchPanel">
+        <input className="inputBuscar" type="search" placeholder="Buscar..." />
+        <SearchOutlineIcon className="icon" />
+      </div>
+      <div className="items">
+        <div className="item">
+          <NotificationsNoneOutlinedIcon className="icon" />
+          <div className="counter">2</div>
         </div>
-        <div className="items">
-          <div className="item">
-            <NotificationsNoneOutlinedIcon className="icon" />
-            <div className="counter">2</div>
-          </div>
-          <div className="item">
-            <ChatBubbleOutlineOutlinedIcon className="icon" />
-            <div className="counter">2</div>
-          </div>
-          <div className="item">Bienvenido, {nombre}!</div>
-          <div className="item">
-            <Image cloudName="dawjd5cx8" publicId={img}>
-              <Transformation
-                height="30"
-                width="30"
-                radius="max"
-                aspectRatio="1.5"
-                crop="fill"
-              />
-            </Image>
-          </div>
+        <div className="item">
+          <ChatBubbleOutlineOutlinedIcon className="icon" />
+          <div className="counter">2</div>
+        </div>
+        <div className="item">Bienvenido, {nombre}!</div>
+        <div className="item">
+          <Image cloudName="dawjd5cx8" publicId={img}>
+            <Transformation
+              height="30"
+              width="30"
+              radius="max"
+              aspectRatio="1.5"
+              crop="fill"
+            />
+          </Image>
         </div>
       </div>
     </div>
+  </div>
   );
 };
 

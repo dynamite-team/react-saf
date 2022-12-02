@@ -30,18 +30,18 @@ const RegisterProductor = ({
 }) => {
   const [formRegisterValues, handleRegisterInputChange] = useForm({
     nombre: "",
-
     precio: "",
     categoria: "",
     descripcion: "",
     proveedor: "",
+   
   });
 
   const inputFileRef = useRef();
 
   const [image, setImage] = useState(logoPost);
 
-  const { nombre, precio, categoria, descripcion, proveedor } =
+  const { nombre, precio,usuario, categoria, descripcion, proveedor } =
     formRegisterValues;
 
   const handleRegister = async (e) => {
@@ -77,6 +77,7 @@ const RegisterProductor = ({
     fetchRegistroProducto(
       nombre,
       precio,
+    
       categoria,
       descripcion,
       proveedor,
@@ -98,7 +99,8 @@ const RegisterProductor = ({
     verUsuarios();
   }, []);
 
-  console.log(usuarios);
+
+  console.log(categorias);
   return (
     <>
       {!loading ? (

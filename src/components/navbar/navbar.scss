@@ -1,4 +1,4 @@
-.navbar {
+.navbarPanel {
   align-items: center;
   border-bottom: 0.5px solid #888;
   color: #555;
@@ -11,16 +11,16 @@
   background-color: #fff;
   z-index: 999;
 
-  .wrapper {
+  .wrapperPanel {
     align-items: center;
     display: flex;
     justify-content: space-between;
     padding: 20px;
     width: 100%;
 
-    .search {
+    .searchPanel {
       align-items: center;
-      border: 0.5px solid lightgray;
+      border: 0.5px solid #045694;
       display: flex;
       padding: 3px;
 
@@ -47,6 +47,7 @@
 
         .icon {
           font-size: 20px;
+         
         }
 
         .avatar {

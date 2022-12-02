@@ -1,156 +1,148 @@
 import "./categoria.scss";
 
-//import Sidebar from "../../../components/navbars/Navhorizontal";
-import {
-  MDBBadge,
-  MDBBtn,
-  MDBTable,
-  MDBTableHead,
-  MDBTableBody,
-} from "mdb-react-ui-kit";
-import { Button, Title, TextInput, Modal } from "@mantine/core";
-
+import { DataGrid } from "@mui/x-data-grid";
+import { fetchSinToken } from "../../../helpers/fetch";
+import { Image, Transformation } from "cloudinary-react";
+import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter";
+import { useState } from "react";
+import { useEffect } from "react";
+import { width } from "@mui/system";
 import { Link } from "react-router-dom";
-
-import { connect, useSelector } from "react-redux";
-//import verUsuarios from "../../redux/actions/usuarios";
-import { useEffect, useState } from "react";
-import Spinner from "../../../layout/Spinner";
-
-import { getCategorias } from "../../../redux/actions/verCategorias";
-
-import DataTable from "react-data-table-component";
-
-const Categorias = ({
-  getCategorias,
-  categoria: {
-    categorias: { categorias },
-    loading,
+import Box from '@mui/material/Box';
+const columns = [
+  {
+    field: "img",
+    headerName: "Foto ",
+    flex: 1,
+    headerClassName: 'super-app-theme--header',
+    cellClassName: 'super-app-theme--cell',
+   
+    renderCell: (params) => {
+      return (
+        <div
+          className="cellWithImg"
+           
+          style={{
+           
+            display: "flex",
+            position:"relative",
+            justifyContent: "center",
+            left:"70px"
+            
+         
+          }}
+        >
+          <Image
+          
+            className="cellImg"
+            cloudName="dawjd5cx8"
+            publicId={params.row.img}
+            alt="avatar"
+          >
+            <Transformation
+              height="50"
+              width="50"
+          
+      
+            />
+          </Image>
+      
+        </div>
+      );
+    },
   },
-}) => {
+  { field: "nombre", headerName: "Nombre", headerClassName: 'super-app-theme--header', width: 300 },
+  { field: "createdAt", headerName: "Fecha de creacion ",  headerClassName: 'super-app-theme--header',width: 300 },
+];
+
+const Categorias = () => {
+  const [data, setData] = useState([]);
+
+  const cargarList = async () => {
+    const resp = await fetchSinToken(`api/v1/categorias/?desde=0&limite=20`);
+
+    const { tabla } = await resp.json();
+
+    if (resp.ok) {
+      setData(tabla);
+    }
+  };
+
   useEffect(() => {
-    getCategorias();
+    cargarList();
   }, []);
 
-  console.log(categorias);
-  /* 
-  const [{nombre}]= categorias
-
-console.log({nombre}) */
-
-  /*   const data = [
-   {
-		"name":[{nombre}],
-	
-	},
-  ]
- */
-
-  const columns = [
+  const actionColumn = [
     {
-      name: "Name",
-      selector: "name",
-      sortable: true,
+      align: "center",
+      headerAlign: "center",
+      field: "action",
+      headerName: "Action",
+      headerClassName: 'super-app-theme--header',
+      flex: 1.5,
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <Link to="/users/test" style={{ textDecoration: "none" }}>
+              <div className="viewButton">Ver</div>
+            </Link>
+            <div
+              className="deleteButton"
+              onClick={() => handleDelete(params.row.id)}
+            >
+              Borrar
+            </div>
+          </div>
+        );
+      },
     },
   ];
 
+  console.log(data);
+
   return (
     <>
-      {!loading ? (
-        <>
-          <div className="list">
-            {/* <Sidebar /> */}
-            <div className="listContainer">
-              <div className="datatable">
-                <div className="datatableTitle">
-                  <br />
-                  <h1 style={{ textAlign: "center" }}>CATEGORIAS</h1>
-                  <hr style={{ color: "black" }}></hr>
+      <>
+        <div className="order">
+          <div className="order-container">
+            <div className="datatable">
+              <div className="datatableTitle">Categorias</div>
 
-                  <div className="container mt-5">
-                    <div className="d-grid gap-2 d-md-flex justify-content-md-center">
-                      <Link
-                        type="button"
-                        className="btn btn-primary btn-left me-md-2"
-                        to="/RegisterCategoria"
-                      >
-                        Registrar Categorias
-                      </Link>
+              <div className="buttonPunto d-grid gap-2 d-md-flex justify-content-md-end">
+                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/admin/RegisterPuntos">Registrar Categoria</Link>
                     </div>
 
-                    <br></br>
-                    <br></br>
-                    <br></br>
+              <Box
+      sx={{
+        height: 400,
+        width: '100%',
+        '& .super-app-theme--header': {
+          backgroundColor: '#045694',
+          color: '#fff',
 
-                    <h1 style={{ textAlign: "center" }}>TABLA CATEGORIAS</h1>
-                    <hr style={{ color: "black" }}></hr>
-
-                    <MDBTable align="middle" bordered borderColor="info">
-                      <MDBTableHead>
-                        <tr>
-                          <th scope="col">Categoria</th>
-                          <th scope="col">Acciones</th>
-                        </tr>
-                      </MDBTableHead>
-                      <MDBTableBody>
-                        {categorias.map((categoria) => (
-                          <tr>
-                            <td>
-                              <div className="d-flex align-items-center">
-                                <div className="ms-3">
-                                  <p className="fw-bold mb-1">
-                                    {categoria.nombre}
-                                  </p>
-                                  <p className="text-muted mb-0"></p>
-                                </div>
-                              </div>
-                            </td>
-
-                            <td>
-                              <MDBBtn color="link" rounded size="sm">
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-warning mx-3"
-                                >
-                                  Edit
-                                </button>
-                                <button
-                                  type="button"
-                                  className="btn btn-outline-danger"
-                                >
-                                  Delete
-                                </button>
-                              </MDBBtn>
-                            </td>
-                          </tr>
-                        ))}
-                      </MDBTableBody>
-                    </MDBTable>
-
-                    {/*                <DataTable
-        title="Employees"
-        columns={columns}
-        data={data}
-        pagination
-        highlightOnHover
-      /> */}
-                  </div>
-                </div>
-              </div>
+        },
+        '& .super-app-theme--cell': {
+          backgroundColor: '#045694',
+          color: '#1a3e72',
+          fontWeight: '600',
+        }
+      }}
+    >
+              <DataGrid
+                className="datagrid"
+                rows={data}
+                columns={columns.concat(actionColumn)}
+                pageSize={5}
+                rowsPerPageOptions={[5]}
+                checkboxSelection
+              />
+              </Box>
             </div>
           </div>
-        </>
-      ) : (
-        <Spinner />
-      )}
+        </div>
+      </>
     </>
   );
 };
 
-const mapStateToProps = (state) => ({
-  categoria: state.categoria,
-});
-
-export default connect(mapStateToProps, {
-  getCategorias,
-})(Categorias);
+export default Categorias;
