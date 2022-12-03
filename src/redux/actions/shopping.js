@@ -6,13 +6,15 @@ import { getAmount } from "../../helpers/amount";
 export const cargarProductos = (designado) => {
   return async (dispatch) => {
     const resp = await fetchSinToken(
-      `api/v1/productos?desde=0&limite=20&punto=${designado}`
+      designado
+        ? `api/v1/productos?desde=0&limite=100&punto=${designado}`
+        : `api/v1/productos?desde=0&limite=100`
     );
 
-    const { productos, categorias } = await resp.json();
+    const { productos, categorias, destinos } = await resp.json();
 
     if (resp.ok) {
-      dispatch(agregarProductos(productos, categorias));
+      dispatch(agregarProductos(productos, categorias, destinos));
     }
   };
 };
@@ -96,7 +98,7 @@ export const getRemaining = (cambio) => ({
   payload: cambio,
 });
 
-const agregarProductos = (productos, categorias) => ({
+const agregarProductos = (productos, categorias, destinos) => ({
   type: TYPES.ADD_PRODUCT,
-  payload: { productos, categorias },
+  payload: { productos, categorias, destinos },
 });

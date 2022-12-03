@@ -17,6 +17,7 @@ import {
   submitOrder,
 } from "../../../redux/actions/shopping";
 import "./cashier.scss";
+import { useForm } from "../../../hooks/useForm";
 
 const Cashier = () => {
   /*  const {
@@ -24,10 +25,24 @@ const Cashier = () => {
   } = useContext(AuthContext); */
 
   const dispatch = useDispatch();
-  const { designado, nombre } = useSelector((state) => state.authReducer);
+  const { designado, nombre, rol } = useSelector((state) => state.authReducer);
 
-  const { products, cart, categories, orden, loading, reload, remaining } =
-    useSelector((state) => state.shoppingReducer);
+  const {
+    products,
+    cart,
+    categories,
+    orden,
+    loading,
+    reload,
+    remaining,
+    puntos,
+  } = useSelector((state) => state.shoppingReducer);
+
+  const [formValues, handleInputChange, reset] = useForm({
+    punto: "",
+  });
+
+  const { punto } = formValues;
 
   /* const [{ products, cart, categories, orden, loading, reload }, dispatch] =
     useReducer(shoppingRecuder, shoppingInitialState); */
@@ -136,11 +151,11 @@ const Cashier = () => {
   return (
     <div className="cashier">
       <div className="cashier-left">
-        <div className="navbar">
+        <div className="navbar-cashier">
           <div className="button-title">
             <Link
               style={{ textDecoration: "none" }}
-              to="/"
+              to="/admin"
               onClick={() => {
                 dispatch(cleanUp());
               }}
@@ -149,6 +164,28 @@ const Cashier = () => {
             </Link>
             <div className="title step-2">Punto de venta</div>
           </div>
+          {rol === "admin" && (
+            <div className="title">
+              <select
+                name="punto"
+                className="styled-select semi-square"
+                defaultValue="default"
+                onChange={(e) => {
+                  handleInputChange(e);
+                  dispatch(cargarProductos(e.target.value));
+                }}
+              >
+                <option value="default" disabled>
+                  Seleccione una localización...
+                </option>
+                {puntos.map(({ uid, nombre }) => (
+                  <option value={uid} key={uid}>
+                    {nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
           <div className="title step-0">Hola, {nombre} 👋❕</div>
         </div>
         <div className="navbar-categories">
@@ -182,7 +219,7 @@ const Cashier = () => {
               <Card
                 key={item.uid}
                 //addCart={addCart}
-                designado={designado}
+                designado={punto || designado}
                 cart={cart}
                 {...item}
               />

@@ -1,66 +1,117 @@
 import "./productos.scss";
 
-
 import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
 import { Image, Transformation } from "cloudinary-react";
-import Spinner from "../../../layout/Spinner";
+import Spinner from "../../../components/spinner/Spinner";
 
 import { getProductos } from "../../../redux/actions/verProductos";
 
 import { DataGrid } from "@mui/x-data-grid";
 import { fetchSinToken } from "../../../helpers/fetch";
+import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter";
 const columns = [
   {
+    field: "id",
+    headerName: "ID",
+    hide: true,
+    width: 50,
+  },
+  {
     field: "img",
-    headerName: "Foto ",
-    flex: 1,
-    headerClassName: 'super-app-theme--header',
+    headerName: "Nombre",
+    flex: 2,
+    headerClassName: "super-app-theme--header",
     renderCell: (params) => {
       return (
         <div
           className="cellWithImg"
-           
           style={{
-           
             display: "flex",
-      
+
             justifyContent: "center",
-           
-            
-         
           }}
         >
           <Image
-          
             className="cellImg"
             cloudName="dawjd5cx8"
             publicId={params.row.img}
             alt="avatar"
           >
-            <Transformation
-              height="50"
-              width="50"
-          
-      
-            />
+            <Transformation height="50" width="50" />
           </Image>
-      
+          {capitalizeFirstLetter(params.row.nombre.toLowerCase())}
         </div>
       );
     },
   },
-  { field: "nombre", headerName: "Nombre",   headerClassName: 'super-app-theme--header', width: 200 },
-  { field: "precio", headerName: "Precio",    headerClassName: 'super-app-theme--header',width: 150 },
-  { field: "lote", headerName: "Lote",   headerClassName: 'super-app-theme--header', width: 150 },
-  { field: "proveedor", headerName: "Proveedor",   headerClassName: 'super-app-theme--header', width: 150 },
-  { field: "usuario", headerName: "Usuario",    headerClassName: 'super-app-theme--header',width: 130 },
+  /*   {
+    field: "nombre",
+    headerName: "Nombre",
+    headerClassName: "super-app-theme--header",
+    width: 200,
+  }, */
+  {
+    field: "descripcion",
+    headerName: "Descripción",
+    headerClassName: "super-app-theme--header",
+    flex: 2,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "precio",
+    headerName: "Precio ($)",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "unidad",
+    headerName: "Se vende por",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "lote",
+    headerName: "Lote",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "proveedor",
+    headerName: "Proveedor",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "updatedAt",
+    headerClassName: "super-app-theme--header",
+    headerName: "Ultima actualización",
+    flex: 2,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "usuario",
+    headerName: "Actualizado por",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
 ];
 const Productos = () => {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const cargarList = async () => {
     const resp = await fetchSinToken(`api/v1/productos/?desde=0&limite=10`);
@@ -69,6 +120,7 @@ const Productos = () => {
 
     if (resp.ok) {
       setData(tabla);
+      setLoading(false);
     }
   };
 
@@ -82,8 +134,8 @@ const Productos = () => {
       headerAlign: "center",
       field: "action",
       headerName: "Action",
-      headerClassName: 'super-app-theme--header',
-      flex: 1.5,
+      headerClassName: "super-app-theme--header",
+      flex: 1,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -102,53 +154,58 @@ const Productos = () => {
     },
   ];
 
+  if (loading) {
+    return <Spinner />;
+  }
 
- 
   return (
     <>
-     
-        <>
+      <>
+        <div className="productos">
+          <div className="productos-container">
+            <div className="datatable">
+              <div className="datatableTitle">
+                Productos
+                <Link to="/admin/RegisterProductos" className="link">
+                  Agregar un producto
+                </Link>
+              </div>
+              {/* <div className="datatableTitle">Productos</div>
 
-<div className="order">
-    <div className="order-container">
-      <div className="datatable">
-        <div className="datatableTitle">Productos</div>
-
-        <div class="buttonList d-grid gap-2 d-md-flex justify-content-md-end">
-                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/admin/RegisterProductos">Registrar producto</Link>
-                    </div>
-        <Box
-      sx={{
-        height: 600,
-        width: '100%',
-        '& .super-app-theme--header': {
-          backgroundColor: '#045694',
-          color: '#fff',
-
-        },
-      
-      }}
-    >
-        <DataGrid
-          className="datagrid"
-          rows={data}
-          columns={columns.concat(actionColumn)}
-          pageSize={8}
-          rowsPerPageOptions={[8]}
-          checkboxSelection
-          
-        />
-        </Box>
-      </div>
-    </div>
-  </div>
-     
-   
-        </>
-  
+              <div className="buttonList d-grid gap-2 d-md-flex justify-content-md-end">
+                <Link
+                  type="button"
+                  className="btn btn-primary btn-left me-md-2"
+                  to="/admin/RegisterProductos"
+                >
+                  Registrar producto
+                </Link>
+              </div> */}
+              <Box
+                sx={{
+                  height: "90%",
+                  width: "100%",
+                  "& .super-app-theme--header": {
+                    backgroundColor: "#045694",
+                    color: "#fff",
+                  },
+                }}
+              >
+                <DataGrid
+                  className="datagrid"
+                  rows={data}
+                  columns={columns.concat(actionColumn)}
+                  pageSize={8}
+                  rowsPerPageOptions={[8]}
+                  checkboxSelection={false}
+                />
+              </Box>
+            </div>
+          </div>
+        </div>
+      </>
     </>
   );
 };
 
-
-export default Productos
+export default Productos;

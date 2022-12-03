@@ -5,12 +5,22 @@ import { addCart } from "../../redux/actions/shopping";
 
 import "./card.scss";
 
-const Card = ({ img, nombre, precio, uid, designado, destino }) => {
+const Card = ({
+  img,
+  nombre,
+  precio,
+  uid,
+  designado,
+  destino,
+  descripcion,
+  unidad,
+}) => {
   const dispatch = useDispatch();
   let cantidad;
   if (destino) {
     cantidad = destino.find((lugares) => lugares.punto._id === designado);
   }
+
   return (
     <div className="card-container" key={uid}>
       <div className="card-img">
@@ -26,16 +36,16 @@ const Card = ({ img, nombre, precio, uid, designado, destino }) => {
       <div className="card-title">
         <div className="card-title-left">
           <div className="card-name">
-            <b>{capitalizeFirstLetter(nombre.toLowerCase())}</b>
+            <b>{capitalizeFirstLetter(descripcion.toLowerCase())}</b>
           </div>
           <div className="card-cantidad">
             {cantidad ? (
               <div className="card-cantidad-contenido step--1">
-                <span>Cantidad: {cantidad.cantidad}</span>
+                <span>{`${cantidad.cantidad} ${unidad} disponibles`}</span>
               </div>
             ) : null}
           </div>
-          <div className="card-price step--1">Precio: {`$${precio}`}</div>
+          <div className="card-price step--1">{`$${precio} por ${unidad}`}</div>
         </div>
 
         <button

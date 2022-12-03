@@ -13,11 +13,12 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import StoreMallDirectoryIcon from "@mui/icons-material/StoreMallDirectory";
 import StyleIcon from "@mui/icons-material/Style";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { startLogout } from "../../redux/actions/auth";
 
 const Sidebar = () => {
   //const { dispatch } = useContext(AuthContext);
+  const { uid } = useSelector((state) => state.authReducer);
 
   const dispatch = useDispatch();
 
@@ -93,17 +94,20 @@ const Sidebar = () => {
             </li>
           </Link>
           <p className="title">Usuario</p>
-          <Link style={{ textDecoration: "none" }} to="/admin/usuarios/:id">
-          <li>
-            <AccountCircleIcon className="icon" />
-            <span>Perfil</span>
-          </li>
+          <Link
+            style={{ textDecoration: "none" }}
+            to={`/admin/usuarios/${uid}`}
+          >
+            <li>
+              <AccountCircleIcon className="icon" />
+              <span>Perfil</span>
+            </li>
           </Link>
           <li>
             <SettingsIcon className="icon" />
             <span>Configuración</span>
           </li>
-      
+
           <Link
             className="nav-link"
             style={{ textDecoration: "none" }}

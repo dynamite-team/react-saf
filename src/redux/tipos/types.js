@@ -47,6 +47,7 @@ export const TYPES = {
   REMOVE_ONE_FROM_CART: "[shopping] REMOVE_ONE_FROM_CART",
   REMOVE_ALL_FROM_CART: "[shopping] REMOVE_ALL_FROM_CART",
   CREATE_ORDER: "[shopping] CREATE_ORDER",
+  SUBMIT_ORDER: "[shopping] SUBMIT_ORDER",
   REMAINING: "[shopping] REMAINING",
   CLEAN_UP: "[shopping] CLEAN_UP",
 
@@ -56,4 +57,8 @@ export const TYPES = {
   PRODUCT_SELECTED: "[stock] PRODUCT_SELECTED",
   LOTE_SELECTED: "[stock] LOTE_SELECTED",
   CLEAN_UP_STOCK: "[stock] CLEAN_UP_STOCK",
+  ASSIGN_STOCK: "[stock] ASSING_STOCK",
+  START_SEARCH: "[stock] START_SEARCH",
+  END_SEARCH: "[stock] END_SEARCH",
+  ADD_FETCH_STOCK: "[stock] ADD_FETCH_STOCK",
 };

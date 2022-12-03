@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, Transformation } from "cloudinary-react";
 import { fetchSinToken } from "../../../helpers/fetch";
 import { useForm } from "../../../hooks/useForm";
@@ -8,69 +8,29 @@ import Spinner from "../../../components/spinner/Spinner";
 import Searching from "../../../components/searching/Searching";
 import "./addInventory.scss";
 import {
+  asignarStock,
+  buscador,
   cargarProductos,
   cargarProveedores,
+  confirmarStock,
   productoSeleccionado,
 } from "../../../redux/actions/stock";
-
-const inventoryInputs = [
-  {
-    id: 1,
-    label: "Producto",
-    type: "text",
-    placeholder: "Selecciona un producto...",
-    input: "input",
-  },
-  {
-    id: 2,
-    label: "Proveedor",
-    type: "text",
-    placeholder: "Selecciona un proveedor...",
-    input: "select",
-    variable: "productor",
-  },
-  {
-    id: 3,
-    label: "LOTE",
-    type: "text",
-    placeholder: "Selecciona el lote...",
-    input: "select",
-    variable: "lote",
-  },
-  {
-    id: 4,
-    label: "Destino",
-    type: "text",
-    placeholder: "Selecciona un destino...",
-    input: "select",
-    variable: "destino",
-  },
-  {
-    id: 5,
-    label: "Cantidad",
-    type: "number",
-    placeholder: "Ingrese una cantidad",
-    input: "input",
-  },
-  /*{
-    id: 6,
-    label: "Address",
-    type: "text",
-    placeholder: "Elton St. 216 NewYork",
-  },
-  {
-    id: 7,
-    label: "Country",
-    type: "text",
-    placeholder: "USA",
-  }, */
-];
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const AddInventory = () => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
-  const { loading, disabled, disabledLote, selects } = useSelector(
-    (state) => state.stockReducer
-  );
+  const {
+    loading,
+    disabled,
+    disabledLote,
+    selects,
+    searching,
+    found,
+    stockUpdate,
+  } = useSelector((state) => state.stockReducer);
 
   //const [selects, setSelects] = useState({});
   //const [loading, setLoading] = useState(true);
@@ -79,24 +39,44 @@ const AddInventory = () => {
 
   //console.log(encontrado, "encontrado");
 
-  const [formValues, handleInputChange] = useForm({
+  const [formValues, handleInputChange, reset] = useForm({
     producto: "",
     proveedor: "",
     lote: "",
+    punto: "",
     cantidad: 0,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(encontrado.destino[0].punto);
-    console.log(destino);
-
+    dispatch(asignarStock(cantidadList));
     /* let newItem =
       encontrado.destino.find((puntos) => puntos.punto === destino.uid) ||
       state.cart.find((product) => product.uid === action.payload.id); */
   };
 
-  const { producto, proveedor, lote, cantidad, destino } = formValues;
+  const { producto, proveedor, lote, cantidad, punto } = formValues;
+
+  const [cantidadList, setCantidadList] = useState([
+    { punto: "", cantidad: "" },
+  ]);
+
+  const handleChange = (e, index) => {
+    const { name, value } = e.target;
+    const list = [...cantidadList];
+    list[index][name] = value;
+    setCantidadList(list);
+  };
+
+  const handleDelete = (index) => {
+    const list = [...cantidadList];
+    list.splice(index, 1);
+    setCantidadList(list);
+  };
+
+  const handleAdd = () => {
+    setCantidadList([...cantidadList, { punto: "", cantidad: "" }]);
+  };
 
   /*   const cargarInformacion = async () => {
     const resp = await fetchSinToken(`api/v1/productos?desde=0&limite=100`);
@@ -122,7 +102,7 @@ const AddInventory = () => {
     }
   }; */
 
-  const buscador = async () => {
+  /*   const buscador = async (producto, proveedor, lote) => {
     setBuscando(true);
     const resp = await fetchSinToken(
       `api/v1/buscar/productos/${producto}/?proveedor=${proveedor}&lote=${lote}`
@@ -135,16 +115,18 @@ const AddInventory = () => {
     }
 
     setBuscando(false);
-  };
+  }; */
 
   useEffect(() => {
     dispatch(cargarProveedores());
   }, []);
 
   useEffect(() => {
-    producto && proveedor && lote && buscador();
+    producto &&
+      proveedor &&
+      lote &&
+      dispatch(buscador(producto, proveedor, lote));
   }, [producto, proveedor, lote]);
-
   if (loading) {
     return <Spinner />;
   }
@@ -152,19 +134,19 @@ const AddInventory = () => {
   return (
     <div className="stock">
       <div className="stock-container">
-        <div className="top">
-          <h1>Agregar al inventario:</h1>
+        <div className="stock-top">
+          <div className="stock-top-text">Agregar al inventario:</div>
         </div>
-        <div className="bottom">
+        <div className="stock-bottom">
           <div className="left">
-            {buscando ? (
+            {searching ? (
               <Searching />
-            ) : encontrado ? (
+            ) : found ? (
               <>
                 <Image
                   className="cellImg"
                   cloudName="dawjd5cx8"
-                  publicId={encontrado.img}
+                  publicId={found.img}
                   alt="avatar"
                 >
                   <Transformation
@@ -263,38 +245,86 @@ const AddInventory = () => {
                 </select>
               </div>
 
-              <div className="formInput">
-                <label>Destino</label>
-                <select
-                  name="destino"
-                  className="styled-select semi-square"
-                  onChange={handleInputChange}
-                  disabled={disabled}
-                >
-                  <option>Seleccione un destino...</option>
-                  {selects.points?.map(({ uid, nombre }) => (
-                    <option value={uid} key={uid}>
-                      {nombre}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              {cantidadList.map((data, i) => (
+                <React.Fragment key={i}>
+                  <div className="formInput">
+                    <label>Destino</label>
+                    <select
+                      name="punto"
+                      className="styled-select semi-square"
+                      onChange={(e) => handleChange(e, i)}
+                      disabled={disabled}
+                    >
+                      <option>Seleccione un destino...</option>
+                      {selects.points?.map(({ uid, nombre }) => (
+                        <option value={uid} key={uid}>
+                          {nombre}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
 
-              <div className="formInput">
-                <label>Cantidad</label>
-                <input
-                  type="number"
-                  name="cantidad"
-                  value={cantidad}
-                  onChange={handleInputChange}
-                  placeholder="Ingrese una cantidad..."
-                  disabled={disabled}
-                />
-              </div>
+                  <div
+                    className="formInput"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      alignContent: "center",
+                    }}
+                  >
+                    <label>Cantidad</label>
+                    <input
+                      type="text"
+                      name="cantidad"
+                      value={data.cantidad}
+                      onChange={(e) => handleChange(e, i)}
+                      placeholder="Ingrese una cantidad..."
+                      disabled={disabled}
+                    />
+                    <button
+                      type="submit"
+                      style={{ backgroundColor: "crimson", margin: "1rem" }}
+                      onClick={() => {
+                        handleDelete(i);
+                      }}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
+                </React.Fragment>
+              ))}
 
-              <button type="submit">Guardar</button>
+              <button
+                type="submit"
+                style={{ backgroundColor: "green", margin: "1rem" }}
+                onClick={(e) => {
+                  handleSubmit(e);
+                }}
+              >
+                Confirmar
+              </button>
+              <button type="button" onClick={handleAdd}>
+                Agregar otro destino
+              </button>
             </form>
           </div>
+        </div>
+        <div className="bottom-button">
+          <button
+            type="submit"
+            onClick={() => {
+              confirmarStock(stockUpdate);
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Registro agregado correctamente",
+                showConfirmButton: false,
+                timer: 1500,
+              }).then((data) => navigate("/stock"));
+            }}
+          >
+            Guardar
+          </button>
         </div>
       </div>
     </div>

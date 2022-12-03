@@ -6,19 +6,19 @@ import { DataGrid } from "@mui/x-data-grid";
 import { fetchSinToken } from "../../../helpers/fetch";
 import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter";
 import Spinner from "../../../components/spinner/Spinner";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 const orderColumns = [
   {
     field: "id",
     headerName: "ID",
     hide: true,
     width: 50,
-    headerClassName: 'super-app-theme--header',
+    headerClassName: "super-app-theme--header",
   },
   {
     field: "usuario",
-    headerName: "Vendedores",
-    headerClassName: 'super-app-theme--header',
+    headerName: "Vendedor",
+    headerClassName: "super-app-theme--header",
     flex: 2,
     renderCell: (params) => {
       return (
@@ -45,14 +45,14 @@ const orderColumns = [
   {
     field: "punto",
     headerName: "Lugar",
-    headerClassName: 'super-app-theme--header',
-    flex: 1,
+    headerClassName: "super-app-theme--header",
+    flex: 2,
   },
   {
     align: "center",
     headerAlign: "center",
     field: "montoTotal",
-    headerClassName: 'super-app-theme--header',
+    headerClassName: "super-app-theme--header",
     headerName: "Monto ($)",
     flex: 1,
   },
@@ -60,11 +60,10 @@ const orderColumns = [
     align: "center",
     headerAlign: "center",
     field: "createdAt",
-    headerClassName: 'super-app-theme--header',
+    headerClassName: "super-app-theme--header",
     headerName: "Fecha de emisión",
-    flex: 2,
+    flex: 1,
   },
-
 ];
 
 const Order = () => {
@@ -95,7 +94,7 @@ const Order = () => {
       align: "center",
       headerAlign: "center",
       field: "action",
-      headerClassName: 'super-app-theme--header',
+      headerClassName: "super-app-theme--header",
       headerName: "Action",
       flex: 1.5,
       renderCell: (params) => {
@@ -127,23 +126,23 @@ const Order = () => {
           <div className="datatableTitle">Ordenes</div>
 
           <Box
-      sx={{
-        height: 550,
-        width: '100%',
-        '& .super-app-theme--header': {
-          backgroundColor: '#045694',
-          color: '#fff',
-        },
-      }}
-    >
-          <DataGrid
-            className="datagrid"
-            rows={data}
-            columns={orderColumns.concat(actionColumn)}
-            pageSize={7}
-            rowsPerPageOptions={[7]}
-            checkboxSelection
-          />
+            sx={{
+              height: "90%",
+              width: "100%",
+              "& .super-app-theme--header": {
+                backgroundColor: "#045694",
+                color: "#fff",
+              },
+            }}
+          >
+            <DataGrid
+              className="datagrid"
+              rows={data}
+              columns={orderColumns.concat(actionColumn)}
+              pageSize={7}
+              rowsPerPageOptions={[7]}
+              checkboxSelection={false}
+            />
           </Box>
         </div>
       </div>

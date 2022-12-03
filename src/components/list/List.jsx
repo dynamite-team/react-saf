@@ -10,7 +10,16 @@ import { capitalizeFirstLetter } from "../../helpers/capitalize-first-letter";
 import { useDispatch } from "react-redux";
 import { addCart, delFromCart } from "../../redux/actions/shopping";
 
-const List = ({ img, nombre, precio, cantidad, destino, designado, uid }) => {
+const List = ({
+  img,
+  nombre,
+  precio,
+  cantidad,
+  destino,
+  designado,
+  uid,
+  unidad,
+}) => {
   const dispatch = useDispatch();
   let disponible = destino.find((lugares) => lugares.punto._id === designado);
 
@@ -30,7 +39,7 @@ const List = ({ img, nombre, precio, cantidad, destino, designado, uid }) => {
             <b>{capitalizeFirstLetter(nombre.toLowerCase())}</b>
           </div>
           <div className="list-name-contenido step--1">
-            Cant. restante: {disponible.cantidad}
+            {`${disponible.cantidad} ${unidad} restantes`}
           </div>
         </div>
       </div>

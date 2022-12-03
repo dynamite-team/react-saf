@@ -15,24 +15,59 @@ import { Link } from "react-router-dom";
 import { connect, useSelector } from "react-redux";
 //import verUsuarios from "../../redux/actions/usuarios";
 import { useEffect, useState } from "react";
-import Spinner from "../../../layout/Spinner";
+import Spinner from "../../../components/spinner/Spinner";
 
 import { getPuntos } from "../../../redux/actions/verPuntos";
 import { DataGrid } from "@mui/x-data-grid";
 import { fetchSinToken } from "../../../helpers/fetch";
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
+
 const columns = [
-  
-  { field: "nombre", headerName: "Nombre", headerClassName: 'super-app-theme--header', width: 200 },
-  { field: "departamento", headerName: "Departamento", headerClassName: 'super-app-theme--header', width: 200 },
-  { field: "barrio", headerName: "Barrio", headerClassName: 'super-app-theme--header', width: 200 },
-  { field: "descripcion", headerName: "Descripcion", headerClassName: 'super-app-theme--header', width: 200 },
-  
+  {
+    field: "nombre",
+    headerName: "Dirección",
+    headerClassName: "super-app-theme--header",
+    flex: 2,
+  },
+  {
+    field: "departamento",
+    headerName: "Departamento",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
+    field: "barrio",
+    headerName: "Barrio",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
+    field: "descripcion",
+    headerName: "Descripcion",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "updatedAt",
+    headerClassName: "super-app-theme--header",
+    headerName: "Ultima actualización",
+    flex: 1,
+  },
+  {
+    align: "center",
+    headerAlign: "center",
+    field: "usuario",
+    headerName: "Actualizado por",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
 ];
 
 const Puntos = () => {
- 
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const cargarList = async () => {
     const resp = await fetchSinToken(`api/v1/puntos/?desde=0&hasta=5`);
@@ -41,6 +76,7 @@ const Puntos = () => {
 
     if (resp.ok) {
       setData(tabla);
+      setLoading(false);
     }
   };
 
@@ -54,8 +90,8 @@ const Puntos = () => {
       headerAlign: "center",
       field: "action",
       headerName: "Action",
-      headerClassName: 'super-app-theme--header',
-      flex: 1.5,
+      headerClassName: "super-app-theme--header",
+      flex: 1,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -74,51 +110,47 @@ const Puntos = () => {
     },
   ];
 
-  console.log(data);
+  if (loading) {
+    return <Spinner />;
+  }
 
   return (
     <>
- 
-        <>
-         
-
-
-
-          <div className="order">
-    <div className="order-container">
-      <div className="datatable">
-        <div className="datatableTitle">Puntos de ventas</div>
-        <div className="buttonPunto d-grid gap-2 d-md-flex justify-content-md-end">
-                    <Link  type="button" className="btn btn-primary btn-left me-md-2" to="/admin/RegisterPuntos">Registrar Punto</Link>
-                    </div>
-                    <Box
-      sx={{
-        height: 400,
-        width: '100%',
-        '& .super-app-theme--header': {
-          backgroundColor: '#045694',
-          color: '#fff',
-        },
-      }}
-    >            
-        <DataGrid
-          className="datagrid"
-          rows={data}
-          columns={columns.concat(actionColumn)}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
-          checkboxSelection
-        />
-        </Box>
-      </div>
-    </div>
-  </div>
-        </>
-   
+      <>
+        <div className="puntos">
+          <div className="puntos-container">
+            <div className="datatable">
+              <div className="datatableTitle">
+                Puntos de venta
+                <Link to="/admin/RegisterPuntos" className="link">
+                  Agregar un punto
+                </Link>
+              </div>
+              <Box
+                sx={{
+                  height: "90%",
+                  width: "100%",
+                  "& .super-app-theme--header": {
+                    backgroundColor: "#045694",
+                    color: "#fff",
+                  },
+                }}
+              >
+                <DataGrid
+                  className="datagrid"
+                  rows={data}
+                  columns={columns.concat(actionColumn)}
+                  pageSize={5}
+                  rowsPerPageOptions={[5]}
+                  checkboxSelection={false}
+                />
+              </Box>
+            </div>
+          </div>
+        </div>
+      </>
     </>
   );
 };
 
-
-
-export default Puntos
+export default Puntos;

@@ -15,14 +15,15 @@
     align-items: center;
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 1rem;
     width: 100%;
 
     .searchPanel {
       align-items: center;
       border: 0.5px solid #045694;
+      border-radius: 5px;
       display: flex;
-      padding: 3px;
+      padding: .125rem;
 
       input {
         background: transparent;
@@ -30,7 +31,7 @@
         outline: none;
 
         &::placeholder {
-          font-size: 12px;
+          font-size: .8rem;
         }
       }
     }
@@ -47,7 +48,7 @@
 
         .icon {
           font-size: 20px;
-         
+
         }
 
         .avatar {

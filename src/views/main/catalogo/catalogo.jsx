@@ -12,6 +12,7 @@ import ModalUbi from "../../../components/modals/modal.ubi";
 import previusArrow from "../../../assets/img/left.png";
 import nextArrow from "../../../assets/img/right.png";
 import { Spinner } from "react-bootstrap";
+import Nav from "../../../components/navbars/Nav";
 
 const Container = styled.div`
   background-color: white;
@@ -218,10 +219,7 @@ const Catalogo = () => {
 
   return (
     <>
-      <NavBarBack
-        color="navbar navbar-expand-lg bg-primary"
-        colorIcon="white"
-      />
+      <Nav color="navbar navbar-expand-lg bg-primary" colorIcon="white" />
       <Container>
         {/* {-----------------CARRUSEL PUBLICIDAD-----------------} */}
         <ContainerCarrusel>
@@ -236,7 +234,7 @@ const Catalogo = () => {
         ) : (
           <Container>
             <AliceCarousel
-              style={{ margin: "35px 35px 35px 35px" }}
+              style={{ margin: ".5rem", display: "flex" }}
               items={items}
               responsive={responsive}
               renderPrevButton={renderPrevButton}

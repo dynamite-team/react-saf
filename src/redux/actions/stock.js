@@ -55,6 +55,49 @@ export const productoSeleccionado = (id) => ({
   payload: id,
 });
 
+export const buscador = (producto, proveedor, lote) => {
+  return async (dispatch) => {
+    dispatch({
+      type: TYPES.START_SEARCH,
+    });
+    const resp = await fetchSinToken(
+      `api/v1/buscar/productos/${producto}/?proveedor=${proveedor}&lote=${lote}`
+    );
+
+    const { results } = await resp.json();
+    if (resp.ok) {
+      dispatch({
+        type: TYPES.END_SEARCH,
+        payload: results[0],
+      });
+    }
+  };
+};
+
+export const asignarStock = (stock) => {
+  return async (dispatch) => {
+    stock.map(({ punto, cantidad }) => {
+      dispatch({
+        type: TYPES.ASSIGN_STOCK,
+        payload: { punto, cantidad },
+      });
+    });
+  };
+};
+
+export const confirmarStock = async (stock) => {
+  console.log("confirmStock", stock);
+
+  const resp = await fetchConToken(`api/v1/productos/stock`, { stock }, "POST");
+
+  if (resp.ok) {
+    console.log("Listo");
+    /* dispatch({
+          type: TYPES.ADD_FETCH_STOCK,
+        }); */
+  }
+};
+
 /* const cargarProveedores = async () => {
   const resp = await fetchConToken(
     `api/v1/usuarios/?desde=0&hasta=5&rol=productor`

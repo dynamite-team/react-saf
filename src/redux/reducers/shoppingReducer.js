@@ -3,6 +3,7 @@ import { TYPES } from "../tipos/types";
 export const shoppingInitialState = {
   products: [],
   cart: [],
+  puntos: [],
   loading: true,
   reload: false,
   remaining: 0,
@@ -19,6 +20,7 @@ export const shoppingReducer = (state = shoppingInitialState, action) => {
         initialProducts: [...action.payload.productos].sort(compare),
         products: [...action.payload.productos].sort(compare),
         categories: action.payload.categorias,
+        puntos: [...action.payload.destinos],
         loading: false,
         reload: false,
       };
