@@ -26,8 +26,6 @@ const SingleOrder = () => {
     cargarOrden();
   }, []);
 
-  console.log(data);
-
   if (loading) {
     return <Spinner />;
   }
