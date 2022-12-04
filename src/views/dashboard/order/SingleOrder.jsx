@@ -44,7 +44,7 @@ const SingleOrder = () => {
             </div>
             <div className="single-order-detalle">
               <b>Fecha de emisión:</b> <br />
-              {data.createdAt}
+              {data.createdAt.slice(0, 10)}
             </div>
           </div>
         </div>
