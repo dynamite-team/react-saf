@@ -85,8 +85,27 @@ const Order = () => {
     cargarOrdenes();
   }, []);
 
-  const handleDelete = (id) => {
-    setData(data.filter((item) => item.id !== id));
+  const handleDelete = (uid) => {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "Esta acción no tiene vuelta atras",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar",
+    }).then((result) => {
+      fetchConToken(`api/v1/ordenes/${uid}`, {}, "DELETE").then((data) => {
+        if (result.isConfirmed && data.ok) {
+          dispatch(cargarOrdenes());
+          Swal.fire(
+            "Borrado!",
+            "El registro fue eliminado correctamente.",
+            "success"
+          );
+        }
+      });
+    });
   };
 
   const actionColumn = [
@@ -108,7 +127,7 @@ const Order = () => {
             </Link>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => handleDelete(params.row.uid)}
             >
               Borrar
             </div>

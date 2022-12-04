@@ -7,11 +7,15 @@ import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter"
 import Spinner from "../../../components/spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
 import { cargarInventario, cleanStock } from "../../../redux/actions/stock";
+import Swal from "sweetalert2";
 import Box from "@mui/material/Box";
+import { fetchConToken } from "../../../helpers/fetch";
+
 const inventoryColumns = [
   {
     field: "id",
     headerName: "ID",
+    headerClassName: "super-app-theme--header",
     hide: true,
     width: 50,
   },
@@ -46,28 +50,27 @@ const inventoryColumns = [
     field: "categoria",
     headerName: "Categoría",
     headerClassName: "super-app-theme--header",
+    /*     renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          {capitalizeFirstLetter(params.row.categoria.toLowerCase())}
+        </div>
+      );
+    }, */
     flex: 1.5,
   },
   {
     field: "lote",
     headerName: "LOTE",
     headerClassName: "super-app-theme--header",
-    flex: 0.5,
-  },
-  {
-    align: "center",
-    headerAlign: "center",
-    headerClassName: "super-app-theme--header",
-    field: "cantidad",
-    headerName: "Cantidad",
     flex: 1,
   },
   {
     align: "center",
     headerAlign: "center",
+    field: "cantidad",
+    headerName: "Cantidad",
     headerClassName: "super-app-theme--header",
-    field: "unidad",
-    headerName: "Unidad",
     flex: 1,
   },
   {
@@ -77,13 +80,23 @@ const inventoryColumns = [
     flex: 2,
   },
   {
-    align: "center",
-    headerAlign: "center",
     field: "proveedor",
     headerName: "Proveedor",
     headerClassName: "super-app-theme--header",
     flex: 1.5,
   },
+  /* {
+    field: "status",
+    headerName: "Status",
+    width: 160,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.status}`}>
+          {params.row.status}
+        </div>
+      );
+    },
+  }, */
 ];
 
 const Inventory = () => {
@@ -91,12 +104,50 @@ const Inventory = () => {
 
   const { loading, stock } = useSelector((state) => state.stockReducer);
 
+  /* const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true); */
+
+  /*   const cargarInventario = async () => {
+    const resp = await fetchSinToken(
+      `api/v1/productos/inventario/?desde=0&limite=50`
+    );
+
+    const { total, inventario } = await resp.json();
+
+    if (resp.ok) {
+      setData(inventario);
+      setLoading(false);
+    }
+  }; */
+
   useEffect(() => {
     dispatch(cargarInventario());
   }, []);
 
-  const handleDelete = (id) => {
-    console.log(id);
+  const handleDelete = async (uid, id) => {
+    Swal.fire({
+      title: "Estas seguro?",
+      text: "Esta acción no tiene vuelta atras",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Aceptar",
+    }).then((result) => {
+      fetchConToken(`api/v1/productos/${uid}/${id}`, {}, "DELETE").then(
+        (data) => {
+          if (result.isConfirmed && data.ok) {
+            dispatch(cargarInventario());
+            Swal.fire(
+              "Borrado!",
+              "El registro fue eliminado correctamente.",
+              "success"
+            );
+          }
+        }
+      );
+    });
+
     //setData(data.filter((item) => item.id !== id));
   };
 
@@ -105,18 +156,20 @@ const Inventory = () => {
       align: "center",
       headerAlign: "center",
       field: "action",
-      headerClassName: "super-app-theme--header",
       headerName: "Action",
+      headerClassName: "super-app-theme--header",
       flex: 1.5,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             <Link to={`/${params.row.id}`} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Ver</div>
+              <div className="viewButton">Editar</div>
             </Link>
             <div
               className="deleteButton"
-              onClick={() => handleDelete(params.row.id)}
+              onClick={() => {
+                handleDelete(params.row.uid, params.row.id);
+              }}
             >
               Borrar
             </div>
@@ -137,28 +190,13 @@ const Inventory = () => {
           <div className="datatableTitle">
             Inventario
             <Link
-              to="/admin/stock/nuevo"
+              to="/stock/nuevo"
               className="link"
               onClick={() => dispatch(cleanStock())}
             >
               Agregar
             </Link>
           </div>
-          {/*           <div className="datatableTitle">
-            Inventario
-
-          </div>
-
-          <div class="buttonInven d-grid gap-2 d-md-flex justify-content-md-end">
-            <Link
-              type="button"
-              className="btn btn-primary btn-left me-md-2"
-              to="/admin/stock/nuevo"
-              onClick={() => dispatch(cleanStock())}
-            >
-              Agregar
-            </Link>
-          </div> */}
           <Box
             sx={{
               height: "90%",
@@ -173,8 +211,8 @@ const Inventory = () => {
               className="datagrid"
               rows={stock}
               columns={inventoryColumns.concat(actionColumn)}
-              pageSize={7}
-              rowsPerPageOptions={[7]}
+              pageSize={10}
+              rowsPerPageOptions={[10]}
               checkboxSelection={false}
             />
           </Box>
