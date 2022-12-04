@@ -23,6 +23,7 @@ import RegisterPuntos from "../Registros/RegisterPuntos";
 import Profile from "../profile/Profile";
 
 import "./dasboardRoutes.scss";
+import SingleOrder from "../order/SingleOrder";
 
 export const DashboardRoutes = () => {
   return (
@@ -44,7 +45,8 @@ export const DashboardRoutes = () => {
           <Route path="/productos" element={<Productos />} />
           <Route path="/RegisterProductos" element={<RegisterProductos />} />
 
-          <Route path="/ordenes" element={<Order />} />
+          <Route path="/ventas" element={<Order />} />
+          <Route path="/venta/:id" element={<SingleOrder />} />
           <Route path="/stock" element={<Inventory />} />
           <Route path="/stock/nuevo" element={<AddInventory />} />
 

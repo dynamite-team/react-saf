@@ -100,7 +100,10 @@ const Order = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link
+              to={`/admin/venta/${params.row.id}`}
+              style={{ textDecoration: "none" }}
+            >
               <div className="viewButton">Ver</div>
             </Link>
             <div
