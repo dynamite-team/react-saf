@@ -123,7 +123,7 @@ const Order = () => {
     <div className="order">
       <div className="order-container">
         <div className="datatable">
-          <div className="datatableTitle">Ordenes</div>
+          <div className="datatableTitle">Registro de ventas</div>
 
           <Box
             sx={{
