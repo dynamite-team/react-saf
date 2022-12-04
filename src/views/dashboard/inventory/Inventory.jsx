@@ -190,7 +190,7 @@ const Inventory = () => {
           <div className="datatableTitle">
             Inventario
             <Link
-              to="/stock/nuevo"
+              to="/admin/stock/nuevo"
               className="link"
               onClick={() => dispatch(cleanStock())}
             >
