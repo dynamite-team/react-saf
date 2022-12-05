@@ -13,7 +13,6 @@ import { cargarEstadisticas } from "../../../redux/actions/stats";
 const Home = () => {
   const dispatch = useDispatch();
   const { loading, ...resto } = useSelector((state) => state.statsReducer);
-  console.log(resto);
 
   /*   const [chart, setChart] = useState([]);
   const [ingresos, setIngresos] = useState([]);
@@ -49,26 +48,23 @@ const Home = () => {
 
   return (
     <div className="home">
-      {/*       {chart.length &&
-      ingresos.length &&
-      semana.length &&
-      productosMes.length ? (
+      {resto ? (
         <div className="homeContainer">
           <div className="widgets">
-            <Widget type="usuarios" />
-            <Widget type="productos" valores={productosMes} />
-            <Widget type="ordenes" valores={ingresos} />
-            <Widget type="ingresos" valores={ingresos} />
+            {/* <Widget type="usuarios" valores={resto} /> */}
+            <Widget type="productos" valores={resto} />
+           {/*  <Widget type="ordenes" valores={resto} />
+            <Widget type="ingresos" valores={resto} /> */}
           </div>
           <div className="charts">
             <Featured
-              dia={features.length ? features : [{ total: 0 }]}
-              mes={ingresos}
-              semana={semana}
+              dia={resto.ganaciaDia.length ? resto.ganaciaDia : [{ total: 0 }]}
+              mes={resto.ganaciaDia}
+              semana={resto.ganaciaSemana}
             />
             <Chart
               title="Ingresos de los ultimos 6 meses"
-              chartStats={chart}
+              chartStats={resto.comparacionSeisUltimosMeses}
               aspect={2 / 1}
             />
           </div>
@@ -77,7 +73,7 @@ const Home = () => {
         <div className="homeContainer">
           <div className="stats">No hay estadisticas disponibles</div>
         </div>
-      )} */}
+      )}
     </div>
   );
 };

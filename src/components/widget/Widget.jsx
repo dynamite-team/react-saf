@@ -8,8 +8,13 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 
 /* const compare = (a, b) => (a._id > b._id ? 1 : b._id > a._id ? -1 : 0); */
 
-const Widget = ({ type, valores }) => {
+const Widget = ({
+  type,
+  valores: { productosMesAnteriorActual, comparacionMesAnteriorActual },
+}) => {
   let data, amount, diff;
+
+  console.log(productosMesAnteriorActual);
 
   switch (type) {
     case "usuarios":
@@ -44,9 +49,11 @@ const Widget = ({ type, valores }) => {
           />
         ),
       };
-      amount = valores[1].productos;
+      amount = productosMesAnteriorActual[1].total;
       diff =
-        ((valores[1].productos - valores[0].productos) / valores[0].productos) *
+        ((productosMesAnteriorActual[1].productos -
+          productosMesAnteriorActual[0].productos) /
+          productosMesAnteriorActual[0].productos) *
         100;
       break;
     case "ordenes":
@@ -90,7 +97,7 @@ const Widget = ({ type, valores }) => {
   }
 
   return (
-    <div className="widget"  style={{	border: "1px solid #045694"}}>
+    <div className="widget" style={{ border: "1px solid #045694" }}>
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
