@@ -90,15 +90,15 @@ const Widget = ({ type, valores }) => {
   }
 
   return (
-    <div className="widget"  style={{	border: "1px solid #045694"}}>
-      <div className="left">
+    <div className="widget">
+      <div className="widget-left">
         <span className="title">{data.title}</span>
         <span className="counter">
           {data.isMoney && "$"} {amount}
         </span>
         <span className="link">{data.link}</span>
       </div>
-      <div className="right">
+      <div className="widget-right">
         {diff && diff <= 0 ? (
           <div className="percentage negative">
             <KeyboardArrowDown />

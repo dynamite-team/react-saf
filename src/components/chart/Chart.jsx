@@ -47,7 +47,7 @@ const Chart = ({ aspect, title, chartStats }) => {
   });
 
   return (
-    <div className="chart" style={{	border: "1px solid #045694"}}>
+    <div className="chart">
       <div className="title">{title}</div>
       <ResponsiveContainer width="100%" aspect={aspect}>
         <AreaChart

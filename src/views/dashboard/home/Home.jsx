@@ -20,6 +20,13 @@ const Home = () => {
     const resp = await fetchSinToken(`api/v1/ordenes/stats`);
     const { seisMeses, anteriorActualMes, productoMes, esteDia, estaSemana } =
       await resp.json();
+
+    console.log(seisMeses, "seisMeses");
+    console.log(anteriorActualMes, "anteriorActualMes");
+    console.log(productoMes, "productoMes");
+    console.log(esteDia, "esteDia");
+    console.log(estaSemana, "estaSemana");
+
     if (resp.ok) {
       setChart(seisMeses);
       setIngresos(

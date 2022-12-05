@@ -236,7 +236,7 @@ const Cashier = () => {
                 //addCart={addCart}
                 //delFromCart={delFromCart}
                 destino={item.destino}
-                designado={designado}
+                designado={punto || designado}
                 {...item}
               />
             ))
