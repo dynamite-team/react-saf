@@ -320,7 +320,7 @@ const AddInventory = () => {
                 title: "Registro agregado correctamente",
                 showConfirmButton: false,
                 timer: 1500,
-              }).then((data) => navigate("/stock"));
+              }).then((data) => navigate("/admin/stock"));
             }}
           >
             Guardar

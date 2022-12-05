@@ -12,11 +12,13 @@ import profile from "./VerProfile";
 import { authReducer } from "./authReducer";
 import { shoppingReducer } from "./shoppingReducer";
 import { stockReducer } from "./stockReducer";
+import { statsReducer } from "./statsReducer";
 
 export default combineReducers({
   authReducer,
   shoppingReducer,
   stockReducer,
+  statsReducer,
 
   buscadorUsuario,
   categoria,
