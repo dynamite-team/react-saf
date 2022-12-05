@@ -58,15 +58,15 @@ const Home = () => {
       {resto ? (
         <div className="homeContainer">
           <div className="widgets">
-            {/* <Widget type="usuarios" valores={resto} /> */}
+            <Widget type="usuarios" valores={resto} />
             <Widget type="productos" valores={resto} />
-           {/*  <Widget type="ordenes" valores={resto} />
-            <Widget type="ingresos" valores={resto} /> */}
+            <Widget type="ordenes" valores={resto} />
+            <Widget type="ingresos" valores={resto} />
           </div>
           <div className="charts">
             <Featured
               dia={resto.ganaciaDia.length ? resto.ganaciaDia : [{ total: 0 }]}
-              mes={resto.ganaciaDia}
+              mes={resto.gananciaMesAnterior}
               semana={resto.ganaciaSemana}
             />
             <Chart

@@ -1,4 +1,5 @@
 import "./widget.scss";
+import { Image, Transformation } from "cloudinary-react";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDown from "@mui/icons-material/KeyboardArrowDown";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -10,7 +11,11 @@ import MonetizationOnOutlinedIcon from "@mui/icons-material/MonetizationOnOutlin
 
 const Widget = ({
   type,
-  valores: { productosMesAnteriorActual, comparacionMesAnteriorActual },
+  valores: {
+    productosMesAnteriorActual,
+    comparacionMesAnteriorActual,
+    productoMasVendidoMes,
+  },
 }) => {
   let data, amount, diff;
 
@@ -19,10 +24,10 @@ const Widget = ({
   switch (type) {
     case "usuarios":
       data = {
-        title: "USUARIOS",
+        title: "PRODUCTO ESTRELLA",
         isMoney: false,
         //link: "Ver todos los usuarios",
-        link: "Ver todos los usuarios",
+        link: `${productoMasVendidoMes[0].nombre}`,
         icon: (
           <PersonOutlinedIcon
             className="icon"
@@ -33,10 +38,11 @@ const Widget = ({
           />
         ),
       };
+      amount = productoMasVendidoMes[0];
       break;
     case "productos":
       data = {
-        title: "PRODUCTOS",
+        title: "PRODUCTOS VENDIDOS",
         isMoney: false,
         link: "Ver todos los productos",
         icon: (
@@ -49,7 +55,7 @@ const Widget = ({
           />
         ),
       };
-      amount = productosMesAnteriorActual[1].total;
+      amount = productosMesAnteriorActual[1].productos;
       diff =
         ((productosMesAnteriorActual[1].productos -
           productosMesAnteriorActual[0].productos) /
@@ -58,7 +64,7 @@ const Widget = ({
       break;
     case "ordenes":
       data = {
-        title: "VENTAS",
+        title: "VENTAS REALIZADAS",
         isMoney: false,
         link: "Ver todas las ventas",
         icon: (
@@ -69,13 +75,16 @@ const Widget = ({
         ),
       };
       /* valoresSort = valores.sort(compare); */
-      amount = valores[1].ordenes;
+      amount = comparacionMesAnteriorActual[1].ordenes;
       diff =
-        ((valores[1].ordenes - valores[0].ordenes) / valores[0].ordenes) * 100;
+        ((comparacionMesAnteriorActual[1].ordenes -
+          comparacionMesAnteriorActual[0].ordenes) /
+          comparacionMesAnteriorActual[0].ordenes) *
+        100;
       break;
     case "ingresos":
       data = {
-        title: "INGRESOS",
+        title: "INGRESOS DEL MES",
         isMoney: true,
         link: "Ver los detalles",
         icon: (
@@ -89,8 +98,12 @@ const Widget = ({
         ),
       };
       /* valoresSort = valores.sort(compare); */
-      amount = valores[1].total;
-      diff = ((valores[1].total - valores[0].total) / valores[0].total) * 100;
+      amount = comparacionMesAnteriorActual[1].total;
+      diff =
+        ((comparacionMesAnteriorActual[1].total -
+          comparacionMesAnteriorActual[0].total) /
+          comparacionMesAnteriorActual[0].total) *
+        100;
       break;
     default:
       break;
@@ -100,25 +113,43 @@ const Widget = ({
     <div className="widget">
       <div className="widget-left">
         <span className="title">{data.title}</span>
-        <span className="counter">
-          {data.isMoney && "$"} {amount}
-        </span>
+        {type === "usuarios" ? (
+          <span className="counter">
+            <Image
+              cloudName="dawjd5cx8"
+              publicId={productoMasVendidoMes[0].img}
+            >
+              <Transformation
+                height="60"
+                width="60"
+                aspectRatio="1.5"
+                crop="fill"
+              />
+            </Image>
+          </span>
+        ) : (
+          <span className="counter">
+            {data.isMoney && "$"} {amount}
+          </span>
+        )}
         <span className="link">{data.link}</span>
       </div>
-      <div className="widget-right">
-        {diff && diff <= 0 ? (
-          <div className="percentage negative">
-            <KeyboardArrowDown />
-            {diff.toFixed()} %
-          </div>
-        ) : (
-          <div className="percentage positive">
-            <KeyboardArrowUpIcon />
-            {diff && diff.toFixed()} %
-          </div>
-        )}
-        {data.icon}
-      </div>
+      {type !== "usuarios" && (
+        <div className="widget-right">
+          {diff && diff <= 0 ? (
+            <div className="percentage negative">
+              <KeyboardArrowDown />
+              {diff.toFixed()} %
+            </div>
+          ) : (
+            <div className="percentage positive">
+              <KeyboardArrowUpIcon />
+              {diff && diff.toFixed()} %
+            </div>
+          )}
+          {data.icon}
+        </div>
+      )}
     </div>
   );
 };

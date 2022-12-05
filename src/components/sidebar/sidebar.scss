@@ -3,6 +3,9 @@
   border-right: 0.5px solid #fff;
   flex: 1;
   height: 100vh;
+  position: relative;
+  left: 0;
+  top: 0;
 
   .top {
     align-items: center;
@@ -58,7 +61,7 @@
         span {
           color: white;
           font-size: 13px;
-          font-weight: 600;
+          font-weight: bold;
           margin-left: 10px;
         }
       }
