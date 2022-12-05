@@ -7,16 +7,22 @@ import "./home.scss";
 import { useEffect, useState } from "react";
 import { fetchSinToken } from "../../../helpers/fetch";
 import Spinner from "../../../components/spinner/Spinner";
+import { useDispatch, useSelector } from "react-redux";
+import { cargarEstadisticas } from "../../../redux/actions/stats";
 
 const Home = () => {
-  const [chart, setChart] = useState([]);
+  const dispatch = useDispatch();
+  const { loading, ...resto } = useSelector((state) => state.statsReducer);
+  console.log(resto);
+
+  /*   const [chart, setChart] = useState([]);
   const [ingresos, setIngresos] = useState([]);
   const [productosMes, setProductosMes] = useState([]);
   const [semana, setSemana] = useState([]);
   const [features, setFeatures] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); */
 
-  const cargarStats = async () => {
+  /*   const cargarStats = async () => {
     const resp = await fetchSinToken(`api/v1/ordenes/stats`);
     const { seisMeses, anteriorActualMes, productoMes, esteDia, estaSemana } =
       await resp.json();
@@ -32,9 +38,9 @@ const Home = () => {
       setFeatures(esteDia);
       setLoading(false);
     }
-  };
+  }; */
   useEffect(() => {
-    cargarStats();
+    dispatch(cargarEstadisticas());
   }, []);
 
   if (loading) {
@@ -43,7 +49,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      {chart.length &&
+      {/*       {chart.length &&
       ingresos.length &&
       semana.length &&
       productosMes.length ? (
@@ -71,7 +77,7 @@ const Home = () => {
         <div className="homeContainer">
           <div className="stats">No hay estadisticas disponibles</div>
         </div>
-      )}
+      )} */}
     </div>
   );
 };
