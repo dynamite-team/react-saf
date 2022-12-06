@@ -178,9 +178,9 @@ const Cashier = () => {
                 <option value="default" disabled>
                   Seleccione una localización...
                 </option>
-                {puntos.map(({ uid, nombre }) => (
+                {puntos.map(({ uid, nombre, departamento }) => (
                   <option value={uid} key={uid}>
-                    {nombre}
+                    {`${nombre} - ${departamento}`}
                   </option>
                 ))}
               </select>
