@@ -71,6 +71,9 @@
                 gap: 15px;
 
                 .viewButton {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     background-color: #003667;
                     //border: 1px dotted rgba(0, 0, 139, 0.596);
                     border-radius: 5px;
@@ -85,6 +88,9 @@
                 }
 
                 .deleteButton {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
                     background-color: red;
                     //border: 1px dotted rgba(220, 20, 60, 0.6);
                     border-radius: 5px;

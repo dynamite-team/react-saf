@@ -1,18 +1,16 @@
 import "./productos.scss";
-
 import { useEffect, useState } from "react";
-
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
-
 import { Image, Transformation } from "cloudinary-react";
 import Spinner from "../../../components/spinner/Spinner";
-
-import { getProductos } from "../../../redux/actions/verProductos";
-
 import { DataGrid } from "@mui/x-data-grid";
 import { fetchSinToken } from "../../../helpers/fetch";
 import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 const columns = [
   {
     field: "id",
@@ -141,13 +139,16 @@ const Productos = () => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">Ver</div>
+              <div className="viewButton" title="Ver">
+                <VisibilityIcon style={{ fontSize: "18px" }} />
+              </div>
             </Link>
             <div
               className="deleteButton"
+              title="Borrar"
               onClick={() => handleDelete(params.row.id)}
             >
-              Borrar
+              <DeleteIcon style={{ fontSize: "18px" }} />
             </div>
           </div>
         );

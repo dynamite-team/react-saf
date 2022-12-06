@@ -6,10 +6,13 @@ import { Image, Transformation } from "cloudinary-react";
 import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter";
 import { useState } from "react";
 import { useEffect } from "react";
-import { width } from "@mui/system";
 import { Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Spinner from "../../../components/spinner/Spinner";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 const columns = [
   {
     field: "img",
@@ -90,13 +93,16 @@ const Categorias = () => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">Ver</div>
+              <div className="viewButton" title="Ver">
+                <VisibilityIcon style={{ fontSize: "18px" }} />
+              </div>
             </Link>
             <div
               className="deleteButton"
+              title="Borrar"
               onClick={() => handleDelete(params.row.id)}
             >
-              Borrar
+              <DeleteIcon style={{ fontSize: "18px" }} />
             </div>
           </div>
         );

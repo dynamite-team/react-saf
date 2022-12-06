@@ -1,12 +1,14 @@
 import "./list.scss";
 import { useEffect, useState } from "react";
-//import { Link } from "react-router-dom";
-//import { Image, Transformation } from "cloudinary-react";
-import { DataGrid } from "@mui/x-data-grid";
-import { fetchSinToken } from "../../../helpers/fetch";
-import Box from "@mui/material/Box";
 import { Link } from "react-router-dom";
+import { fetchSinToken } from "../../../helpers/fetch";
+import { DataGrid } from "@mui/x-data-grid";
+import Box from "@mui/material/Box";
 import Spinner from "../../../components/spinner/Spinner";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 const columns = [
   {
     field: "usuario",
@@ -81,13 +83,16 @@ const List = () => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">Ver</div>
+              <div className="viewButton" title="Ver">
+                <VisibilityIcon style={{ fontSize: "18px" }} />
+              </div>
             </Link>
             <div
               className="deleteButton"
+              title="Borrar"
               onClick={() => handleDelete(params.row.id)}
             >
-              Borrar
+              <DeleteIcon style={{ fontSize: "18px" }} />
             </div>
           </div>
         );
@@ -110,17 +115,6 @@ const List = () => {
                 Agregar un usuario
               </Link>
             </div>
-            {/*             <div className="datatableTitle">Usuarios</div>
-
-            <div className="buttonList d-grid gap-2 d-md-flex justify-content-md-end">
-              <Link
-                type="button"
-                className="btn btn-primary btn-left me-md-2"
-                to="/admin/RegisterUsuario"
-              >
-                Registrar usuario
-              </Link>
-            </div> */}
             <Box
               sx={{
                 height: "90%",

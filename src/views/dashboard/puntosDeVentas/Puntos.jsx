@@ -1,26 +1,13 @@
 import "./puntos.scss";
-
-//import Sidebar from "../../../components/navbars/Navhorizontal";
-import {
-  MDBBadge,
-  MDBBtn,
-  MDBTable,
-  MDBTableHead,
-  MDBTableBody,
-} from "mdb-react-ui-kit";
-import { Button, Title, TextInput, Modal } from "@mantine/core";
-
 import { Link } from "react-router-dom";
-
-import { connect, useSelector } from "react-redux";
-//import verUsuarios from "../../redux/actions/usuarios";
 import { useEffect, useState } from "react";
 import Spinner from "../../../components/spinner/Spinner";
-
-import { getPuntos } from "../../../redux/actions/verPuntos";
 import { DataGrid } from "@mui/x-data-grid";
 import { fetchSinToken } from "../../../helpers/fetch";
 import Box from "@mui/material/Box";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const columns = [
   {
@@ -96,13 +83,16 @@ const Puntos = () => {
         return (
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">Ver</div>
+              <div className="viewButton" title="Ver">
+                <VisibilityIcon style={{ fontSize: "18px" }} />
+              </div>
             </Link>
             <div
               className="deleteButton"
+              title="Borrar"
               onClick={() => handleDelete(params.row.id)}
             >
-              Borrar
+              <DeleteIcon style={{ fontSize: "18px" }} />
             </div>
           </div>
         );

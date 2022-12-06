@@ -7,6 +7,10 @@ import { fetchSinToken } from "../../../helpers/fetch";
 import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter";
 import Spinner from "../../../components/spinner/Spinner";
 import Box from "@mui/material/Box";
+
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 const orderColumns = [
   {
     field: "id",
@@ -37,7 +41,9 @@ const orderColumns = [
               crop="fill"
             />
           </Image>
-          {capitalizeFirstLetter(params.row.usuario.toLowerCase())}
+          {`${capitalizeFirstLetter(
+            params.row.nombre.toLowerCase()
+          )} ${capitalizeFirstLetter(params.row.apellido.toLowerCase())}`}
         </div>
       );
     },
@@ -115,7 +121,7 @@ const Order = () => {
       field: "action",
       headerClassName: "super-app-theme--header",
       headerName: "Action",
-      flex: 1.5,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div className="cellAction">
@@ -123,13 +129,16 @@ const Order = () => {
               to={`/admin/venta/${params.row.id}`}
               style={{ textDecoration: "none" }}
             >
-              <div className="viewButton">Ver</div>
+              <div className="viewButton" title="Ver">
+                <VisibilityIcon style={{ fontSize: "18px" }} />
+              </div>
             </Link>
             <div
               className="deleteButton"
+              title="Borrar"
               onClick={() => handleDelete(params.row.uid)}
             >
-              Borrar
+              <DeleteIcon style={{ fontSize: "18px" }} />
             </div>
           </div>
         );

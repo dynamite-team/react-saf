@@ -11,6 +11,9 @@ import Swal from "sweetalert2";
 import Box from "@mui/material/Box";
 import { fetchConToken } from "../../../helpers/fetch";
 
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+
 const inventoryColumns = [
   {
     field: "id",
@@ -159,20 +162,23 @@ const Inventory = () => {
       field: "action",
       headerName: "Action",
       headerClassName: "super-app-theme--header",
-      flex: 1.5,
+      flex: 1,
       renderCell: (params) => {
         return (
           <div className="cellAction">
             <Link to={`/${params.row.id}`} style={{ textDecoration: "none" }}>
-              <div className="viewButton">Editar</div>
+              <div className="viewButton" title="Ver">
+                <VisibilityIcon style={{ fontSize: "18px" }} />
+              </div>
             </Link>
             <div
               className="deleteButton"
+              title="Borrar"
               onClick={() => {
                 handleDelete(params.row.uid, params.row.id);
               }}
             >
-              Borrar
+              <DeleteIcon style={{ fontSize: "18px" }} />
             </div>
           </div>
         );
@@ -190,11 +196,7 @@ const Inventory = () => {
         <div className="datatable">
           <div className="datatableTitle">
             Inventario
-            <Link
-              to="/admin/stock/nuevo"
-              className="link"
-              onClick={() => dispatch(cleanStock())}
-            >
+            <Link to="/admin/stock/nuevo" className="link">
               Agregar
             </Link>
           </div>

@@ -35,7 +35,7 @@ const AddInventory = () => {
   //const [selects, setSelects] = useState({});
   //const [loading, setLoading] = useState(true);
   const [encontrado, setEncontrado] = useState();
-  const [buscando, setBuscando] = useState(false);
+  const [hidden, setHidden] = useState(true);
 
   //console.log(encontrado, "encontrado");
 
@@ -264,14 +264,7 @@ const AddInventory = () => {
                     </select>
                   </div>
 
-                  <div
-                    className="formInput"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      alignContent: "center",
-                    }}
-                  >
+                  <div className="formInput">
                     <label>Cantidad</label>
                     <input
                       type="text"
@@ -281,7 +274,7 @@ const AddInventory = () => {
                       placeholder="Ingrese una cantidad..."
                       disabled={disabled}
                     />
-                    <button
+                    {/* <button
                       type="submit"
                       style={{ backgroundColor: "crimson", margin: "1rem" }}
                       onClick={() => {
@@ -289,22 +282,35 @@ const AddInventory = () => {
                       }}
                     >
                       Eliminar
-                    </button>
+                    </button> */}
                   </div>
                 </React.Fragment>
               ))}
-
-              <button
-                type="submit"
-                style={{ backgroundColor: "green", margin: "1rem" }}
-                onClick={(e) => {
-                  handleSubmit(e);
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
-                Confirmar
-              </button>
-              <button type="button" onClick={handleAdd}>
-                Agregar otro destino
+                <div hidden={hidden}>✔️</div>
+                <button
+                  type="submit"
+                  style={{ backgroundColor: "green", margin: "1rem" }}
+                  onClick={(e) => {
+                    handleSubmit(e);
+                    setHidden(false);
+                  }}
+                >
+                  Confirmar
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={handleAdd}
+                style={{ backgroundColor: "blue", margin: "1rem" }}
+              >
+                Más destino
               </button>
             </form>
           </div>
