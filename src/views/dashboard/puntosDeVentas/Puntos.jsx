@@ -140,8 +140,9 @@ const Puntos = () => {
                   className="datagrid"
                   rows={data}
                   columns={columns.concat(actionColumn)}
-                  pageSize={5}
-                  rowsPerPageOptions={[5]}
+                  autoHeight
+                  pageSize={8}
+                  rowsPerPageOptions={[8]}
                   checkboxSelection={false}
                 />
               </Box>

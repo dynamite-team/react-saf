@@ -5,13 +5,145 @@
     .single-order-container {
         flex: 6;
 
-        .single-order-top,
-        .single-order-bottom {
+        .single-order-top {
             -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
             box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
             padding: 1rem;
             margin: 1rem;
             display: flex;
+            flex: 1;
+
+            .datatable {
+                flex: 1;
+                padding: 0.5rem;
+
+                .single-order-list {
+                    //background-color: red;
+                    border: 1px solid #003667;
+                    border-radius: 10px;
+                    color: #003667;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+
+
+                    .single-order-img {
+                        flex: .5;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .single-order-descripcion {
+                        flex: 1;
+                        display: flex;
+                        justify-content: start;
+                    }
+
+                    .single-order-cantidad {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .single-order-precio {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                }
+
+                .datatableTitle {
+                    width: 100%;
+                    font-size: 2rem;
+                    color: #003667;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .link {
+                        text-decoration: none;
+                        background-color: green;
+                        color: white;
+                        font-size: 16px;
+                        font-weight: 400;
+                        //border: 1px solid green;
+                        padding: 5px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                }
+
+                .cellWithImg {
+                    display: flex;
+                    align-items: center;
+
+                    .cellImg {
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        margin-right: 20px;
+                    }
+                }
+
+                .cellWithStatus {
+                    padding: 5px;
+                    border-radius: 5px;
+
+                    &.active {
+                        background-color: rgba(0, 128, 0, 0.05);
+                        color: green;
+                    }
+
+                    &.pending {
+                        background-color: rgba(255, 217, 0, 0.05);
+                        color: goldenrod;
+                    }
+
+                    &.passive {
+                        background-color: rgba(255, 0, 0, 0.05);
+                        color: crimson;
+                    }
+                }
+
+                .cellAction {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    .viewButton {
+                        background-color: #003667;
+                        //border: 1px dotted rgba(0, 0, 139, 0.596);
+                        border-radius: 5px;
+                        color: white;
+                        font-size: var(--step--1);
+                        padding: 2px 5px;
+                        cursor: pointer;
+
+                        &:hover {
+                            opacity: 80%;
+                        }
+                    }
+
+                    .deleteButton {
+                        background-color: red;
+                        //border: 1px dotted rgba(220, 20, 60, 0.6);
+                        border-radius: 5px;
+                        color: white;
+                        font-size: var(--step--1);
+                        padding: 2px 5px;
+                        cursor: pointer;
+
+                        &:hover {
+                            opacity: 80%;
+                        }
+                    }
+                }
+            }
 
             .single-order-top-text {
                 font-size: 2rem;
@@ -67,7 +199,7 @@
                 }
             }
 
-            button {
+            /*             button {
                 width: 150px;
                 padding: .5rem;
                 border: none;
@@ -77,7 +209,221 @@
                 font-weight: bold;
                 cursor: pointer;
                 margin-top: .5rem;
+            } */
+
+            h1 {
+                color: #003667;
+                font-size: var(--step-2);
             }
+
+
+        }
+
+        .single-order-bottom {
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+            padding: 1rem;
+            margin: 1rem;
+            display: flex;
+            flex: 3;
+
+            .datatable {
+                flex: 1;
+                padding: 0.5rem;
+
+                .single-order-list {
+                    //background-color: red;
+                    border: 1px solid #003667;
+                    border-radius: 10px;
+                    color: #003667;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+
+
+                    .single-order-img {
+                        flex: .5;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .single-order-descripcion {
+                        flex: 1;
+                        display: flex;
+                        justify-content: start;
+                    }
+
+                    .single-order-cantidad {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .single-order-precio {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                }
+
+                .datatableTitle {
+                    width: 100%;
+                    font-size: 2rem;
+                    color: #003667;
+                    font-weight: bold;
+                    margin-bottom: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    .link {
+                        text-decoration: none;
+                        background-color: green;
+                        color: white;
+                        font-size: 16px;
+                        font-weight: 400;
+                        //border: 1px solid green;
+                        padding: 5px;
+                        border-radius: 5px;
+                        cursor: pointer;
+                    }
+                }
+
+                .cellWithImg {
+                    display: flex;
+                    align-items: center;
+
+                    .cellImg {
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 50%;
+                        object-fit: cover;
+                        margin-right: 20px;
+                    }
+                }
+
+                .cellWithStatus {
+                    padding: 5px;
+                    border-radius: 5px;
+
+                    &.active {
+                        background-color: rgba(0, 128, 0, 0.05);
+                        color: green;
+                    }
+
+                    &.pending {
+                        background-color: rgba(255, 217, 0, 0.05);
+                        color: goldenrod;
+                    }
+
+                    &.passive {
+                        background-color: rgba(255, 0, 0, 0.05);
+                        color: crimson;
+                    }
+                }
+
+                .cellAction {
+                    display: flex;
+                    align-items: center;
+                    gap: 15px;
+
+                    .viewButton {
+                        background-color: #003667;
+                        //border: 1px dotted rgba(0, 0, 139, 0.596);
+                        border-radius: 5px;
+                        color: white;
+                        font-size: var(--step--1);
+                        padding: 2px 5px;
+                        cursor: pointer;
+
+                        &:hover {
+                            opacity: 80%;
+                        }
+                    }
+
+                    .deleteButton {
+                        background-color: red;
+                        //border: 1px dotted rgba(220, 20, 60, 0.6);
+                        border-radius: 5px;
+                        color: white;
+                        font-size: var(--step--1);
+                        padding: 2px 5px;
+                        cursor: pointer;
+
+                        &:hover {
+                            opacity: 80%;
+                        }
+                    }
+                }
+            }
+
+            .single-order-top-text {
+                font-size: 2rem;
+                color: #003667;
+                font-weight: bold;
+            }
+
+            .single-order-wrapper-top {
+                color: #003667;
+            }
+
+            .single-order-wrapper {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                .single-order-list {
+                    //background-color: red;
+                    border: 1px solid #003667;
+                    border-radius: 10px;
+                    color: #003667;
+                    padding: .5rem;
+                    margin: .25rem;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+
+                    .single-order-img {
+                        flex: .5;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .single-order-descripcion {
+                        flex: 1;
+                        display: flex;
+                        justify-content: start;
+                    }
+
+                    .single-order-cantidad {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .single-order-precio {
+                        flex: 1;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                }
+            }
+
+            /*             button {
+                width: 150px;
+                padding: .5rem;
+                border: none;
+                border-radius: 5px;
+                background-color: #003667;
+                color: white;
+                font-weight: bold;
+                cursor: pointer;
+                margin-top: .5rem;
+            } */
 
             h1 {
                 color: #003667;

@@ -161,8 +161,9 @@ const Order = () => {
               className="datagrid"
               rows={data}
               columns={orderColumns.concat(actionColumn)}
-              pageSize={7}
-              rowsPerPageOptions={[7]}
+              autoHeight
+              pageSize={8}
+              rowsPerPageOptions={[8]}
               checkboxSelection={false}
             />
           </Box>

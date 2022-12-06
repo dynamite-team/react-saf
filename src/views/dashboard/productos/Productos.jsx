@@ -47,6 +47,7 @@ const columns = [
         </div>
       );
     },
+    valueGetter: (params) => params.row.nombre,
   },
   /*   {
     field: "nombre",
@@ -195,6 +196,7 @@ const Productos = () => {
                   className="datagrid"
                   rows={data}
                   columns={columns.concat(actionColumn)}
+                  autoHeight
                   pageSize={8}
                   rowsPerPageOptions={[8]}
                   checkboxSelection={false}

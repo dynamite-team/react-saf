@@ -45,6 +45,7 @@ const inventoryColumns = [
         </div>
       );
     },
+    valueGetter: (params) => params.row.nombre,
   },
   {
     field: "categoria",
@@ -211,8 +212,9 @@ const Inventory = () => {
               className="datagrid"
               rows={stock}
               columns={inventoryColumns.concat(actionColumn)}
-              pageSize={10}
-              rowsPerPageOptions={[10]}
+              autoHeight
+              pageSize={8}
+              rowsPerPageOptions={[8]}
               checkboxSelection={false}
             />
           </Box>

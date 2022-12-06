@@ -9,16 +9,28 @@ import { Link } from "react-router-dom";
 import Spinner from "../../../components/spinner/Spinner";
 const columns = [
   {
+    field: "usuario",
+    headerName: "Usuario",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
+  },
+  {
     field: "nombre",
     headerName: "Nombre",
     headerClassName: "super-app-theme--header",
-    flex: 2,
+    flex: 1,
+  },
+  {
+    field: "apellido",
+    headerName: "Apellido",
+    headerClassName: "super-app-theme--header",
+    flex: 1,
   },
   {
     field: "correo",
     headerName: "Correo",
     headerClassName: "super-app-theme--header",
-    flex: 1,
+    flex: 2,
   },
   {
     align: "center",
@@ -123,6 +135,7 @@ const List = () => {
                 className="datagrid"
                 rows={data}
                 columns={columns.concat(actionColumn)}
+                autoHeight
                 pageSize={8}
                 rowsPerPageOptions={[8]}
                 checkboxSelection={false}
