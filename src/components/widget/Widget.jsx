@@ -19,8 +19,6 @@ const Widget = ({
 }) => {
   let data, amount, diff;
 
-  console.log(productosMesAnteriorActual);
-
   switch (type) {
     case "usuarios":
       data = {

@@ -286,6 +286,11 @@ export const stockReducer = (state = stockInitialState, action) => {
       return {
         ...stockInitialState,
       };
+    case TYPES.RELOADING:
+      return {
+        ...state,
+        loading: true,
+      };
     default:
       return state;
   }

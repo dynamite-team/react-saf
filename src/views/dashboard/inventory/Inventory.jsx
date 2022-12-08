@@ -6,7 +6,11 @@ import { DataGrid } from "@mui/x-data-grid";
 import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter";
 import Spinner from "../../../components/spinner/Spinner";
 import { useDispatch, useSelector } from "react-redux";
-import { cargarInventario, cleanStock } from "../../../redux/actions/stock";
+import {
+  cargarInventario,
+  cleanStock,
+  reloadingStock,
+} from "../../../redux/actions/stock";
 import Swal from "sweetalert2";
 import Box from "@mui/material/Box";
 import { fetchConToken } from "../../../helpers/fetch";
@@ -196,7 +200,11 @@ const Inventory = () => {
         <div className="datatable">
           <div className="datatableTitle">
             Inventario
-            <Link to="/admin/stock/nuevo" className="link">
+            <Link
+              to="/admin/stock/nuevo"
+              className="link"
+              onClick={() => dispatch(reloadingStock())}
+            >
               Agregar
             </Link>
           </div>

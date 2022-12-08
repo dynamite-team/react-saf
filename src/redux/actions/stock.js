@@ -117,6 +117,10 @@ export const cleanStock = () => ({
   type: TYPES.CLEAN_UP_STOCK,
 });
 
+export const reloadingStock = () => ({
+  type: TYPES.RELOADING,
+});
+
 const agregarProductos = (inventario) => ({
   type: TYPES.SHOW_STOCK,
   payload: inventario,

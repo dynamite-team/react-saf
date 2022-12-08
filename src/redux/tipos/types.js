@@ -61,6 +61,7 @@ export const TYPES = {
   START_SEARCH: "[stock] START_SEARCH",
   END_SEARCH: "[stock] END_SEARCH",
   ADD_FETCH_STOCK: "[stock] ADD_FETCH_STOCK",
+  RELOADING: "[stock] RELOADING",
 
   ADD_STATS: "[stats] ADD_STATS",
 };
