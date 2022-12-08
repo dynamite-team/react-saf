@@ -14,6 +14,8 @@ const Profile = () => {
 
   const { id } = useParams();
   const { uid, img, nombre } = useSelector((state) => state.authReducer);
+
+  
   useEffect(() => {
     const cargarPublicaciones = async () => {
       const resp = await axios.get(
@@ -46,8 +48,6 @@ const Profile = () => {
                     <Image cloudName="dawjd5cx8" publicId={img}>
             <Transformation
               height="200"
-             
-              
               width="200"
               radius="max"
               aspectRatio="1.5"

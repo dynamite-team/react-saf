@@ -4,10 +4,10 @@ import { TablaReporte } from "../../../components/reporte/tablaReporte";
 import Pdf from "react-to-pdf";
 import { createRef } from "react";
 import { BarChartReporte, PieChartReporte } from "../../../components/chart/PieChart";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import { useEffect } from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { cargarEstadisticas } from "../../../redux/actions/stats";
+import Spinner from "../../../components/spinner/Spinner";
 
 const ref = createRef();
 const options = {
@@ -16,12 +16,10 @@ const options = {
 
 export const ReportesView = () => {
 
-    const { comparacionSeisUltimosMeses } = useSelector(state => state.statsReducer);
+    const dispatch = useDispatch();
+    const { loading, ...resto } = useSelector(state => state.statsReducer);
     const [dataIngresos, setDataIngresos] = useState([]);
 
-    useEffect(() => {
-        setDataIngresos(comparacionSeisUltimosMeses);
-    })
 
     let arrayValoresTotales = [];
     let arrayValoresVentas = [];
@@ -31,6 +29,15 @@ export const ReportesView = () => {
     }
     // console.log("array", arrayValoresTotales);
     // console.log("arrayCantVentas", arrayValoresVentas)
+
+    useEffect(() => {
+        dispatch(cargarEstadisticas());
+        setDataIngresos(resto.comparacionSeisUltimosMeses);
+    }, []);
+
+    if (loading) {
+        return <Spinner />;
+    }
 
     return (
         <>
@@ -51,12 +58,12 @@ export const ReportesView = () => {
 
                     <div className="containerCharts">
                         <div style={{ "width": "40%" }}>
-                            <PieChartReporte dataTotal={arrayValoresTotales} />
+                            <PieChartReporte
+                                dataTotal={arrayValoresTotales} />
                         </div>
                         <div style={{ "width": "55%", "margin": "auto" }}>
                             <BarChartReporte
                                 cantVentas={arrayValoresVentas}
-                                dataTotal={arrayValoresTotales}
                             />
                         </div>
                     </div>

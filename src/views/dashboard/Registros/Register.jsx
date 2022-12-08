@@ -8,7 +8,6 @@ import {
   clearRegistro,
 } from "../../../redux/actions/registro";
 
-//import Sidebar from "../../../components/navbars/Navhorizontal";
 
 const Registro = ({ fetchRegistroUsuario }) => {
   const [formRegisterValues, handleRegisterInputChange] = useForm({
@@ -27,7 +26,7 @@ const Registro = ({ fetchRegistroUsuario }) => {
     }
 
     //setRefresh(true)
-    console.log(nombre, rol);
+    console.log(formRegisterValues);
   };
 
   return (
@@ -61,7 +60,7 @@ const Registro = ({ fetchRegistroUsuario }) => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="nombre"
+                  placeholder="Nombre"
                   name="nombre"
                   value={nombre}
                   onChange={handleRegisterInputChange}
@@ -75,10 +74,10 @@ const Registro = ({ fetchRegistroUsuario }) => {
                   onChange={handleRegisterInputChange}
                 >
                   <option>Selecciona un rol</option>
-                  <option value="admin">admin</option>
-                  <option value="productor">productor</option>
-                  <option value="inventario">inventario</option>
-                  <option value="cajero">cajero</option>
+                  <option value="admin">Admin</option>
+                  <option value="productor">Productor</option>
+                  <option value="inventario">Inventario</option>
+                  <option value="cajero">Cajero</option>
                 </select>
 
                 <input type="submit" className="fadeIn fourth" value="Enviar" />

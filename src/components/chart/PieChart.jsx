@@ -35,7 +35,7 @@ export const PieChartReporte = ({ dataTotal }) => {
     )
 };
 
-export const BarChartReporte = ({ dataTotal, cantVentas }) => {
+export const BarChartReporte = ({ cantVentas }) => {
 
     const options = {
         responsive: true,
@@ -45,7 +45,7 @@ export const BarChartReporte = ({ dataTotal, cantVentas }) => {
             },
             title: {
                 display: true,
-                text: 'Gráfico total de ventas y montos por mes',
+                text: 'Gráfico total de ventas',
             },
         },
     };
@@ -58,12 +58,7 @@ export const BarChartReporte = ({ dataTotal, cantVentas }) => {
                 label: 'Cantidad de Ordenes',
                 data: cantVentas,
                 backgroundColor: 'rgba(255, 99, 132, 0.5)',
-            },
-            {
-                label: 'Total $',
-                data: dataTotal,
-                backgroundColor: 'rgba(53, 162, 235, 0.5)',
-            },
+            }
         ],
     };
 

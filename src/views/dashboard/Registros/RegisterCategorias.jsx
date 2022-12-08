@@ -37,7 +37,7 @@ const RegistroCategoria = ({ fetchRegistroCategoria }) => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="categoria"
+                  placeholder="Categoria"
                   name="nombre"
                   value={nombre}
                   onChange={handleRegisterInputChange}

@@ -173,7 +173,7 @@ const RegisterProductor = ({
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="descripcion"
+                      placeholder="Descripcion"
                       name="descripcion"
                       value={descripcion}
                       onChange={handleRegisterInputChange}

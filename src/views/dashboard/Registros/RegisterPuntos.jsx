@@ -39,7 +39,7 @@ const RegistroPuntos = ({ fetchRegistroPuntos }) => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="nombre"
+                  placeholder="Nombre"
                   name="nombre"
                   value={nombre}
                   onChange={handleRegisterInputChange}
@@ -48,7 +48,7 @@ const RegistroPuntos = ({ fetchRegistroPuntos }) => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="departamento"
+                  placeholder="Departamento"
                   name="departamento"
                   value={departamento}
                   onChange={handleRegisterInputChange}
@@ -57,7 +57,7 @@ const RegistroPuntos = ({ fetchRegistroPuntos }) => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="barrio"
+                  placeholder="Barrio"
                   name="barrio"
                   value={barrio}
                   onChange={handleRegisterInputChange}
@@ -66,7 +66,7 @@ const RegistroPuntos = ({ fetchRegistroPuntos }) => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="descripcion"
+                  placeholder="Descripcion"
                   name="descripcion"
                   value={descripcion}
                   onChange={handleRegisterInputChange}
