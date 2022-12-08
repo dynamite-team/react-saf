@@ -18,6 +18,7 @@ import Categorias from "../categoria/Categorias";
 import Productos from "../productos/Productos";
 import PuntosVentas from "../puntosDeVentas/Puntos";
 import RegisterPuntos from "../Registros/RegisterPuntos";
+import { ReportesView } from "../reportes/reportes";
 //import Catalogo from "../catalogo/catalogo";
 
 import Profile from "../profile/Profile";
@@ -49,6 +50,7 @@ export const DashboardRoutes = () => {
           <Route path="/venta/:id" element={<SingleOrder />} />
           <Route path="/stock" element={<Inventory />} />
           <Route path="/stock/nuevo" element={<AddInventory />} />
+          <Route path="/reportes" element={<ReportesView />} />
 
           <Route path="/*" element={<Navigate to="/admin" />} />
         </Routes>

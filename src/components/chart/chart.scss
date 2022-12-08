@@ -6,10 +6,32 @@
   color: #003667;
   border-radius: .5rem;
 
+  .titulo-boton{
 
-  .title {
-    margin-bottom: 0rem;
+    display: flex;
+    flex-direction: row;
+    margin: 2px;
+  
+    .title {
+      margin-bottom: 0rem;
+    }
+  
+    .button-reporte{
+      text-decoration: none;
+      background-color: #045694;
+      color: white;
+      font-size: 16px;
+      font-weight: bolder;
+      padding: 5px;
+      border-radius: 5px;
+      cursor: pointer;
+      border: none;
+      margin-left: 2%;
+      width: 15%;
+      text-align: center;
+    }
   }
+ 
 
   .chartGrid {
     stroke: rgb(228, 225, 225);

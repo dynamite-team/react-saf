@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { useMemo } from "react";
+import { Link } from "react-router-dom";
 
 const data = [
   { name: "January", Total: 1200 },
