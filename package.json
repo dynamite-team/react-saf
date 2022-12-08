@@ -45,6 +45,7 @@
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.3.0",
     "react-select": "^5.6.0",
+    "react-to-pdf": "^0.0.14",
     "recharts": "^2.1.15",
     "redux": "^4.2.0",
     "redux-devtools-extension": "^2.13.9",

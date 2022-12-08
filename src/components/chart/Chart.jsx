@@ -48,7 +48,20 @@ const Chart = ({ aspect, title, chartStats }) => {
 
   return (
     <div className="chart">
-      <div className="title">{title}</div>
+      <div className="titulo-boton">
+        <div className="title">{title}</div>
+
+        <Link
+          type="button"
+          className="button-reporte"
+          to="/admin/reportes"
+        >
+          Reporte
+        </Link>
+
+      </div>
+
+
       <ResponsiveContainer width="100%" aspect={aspect}>
         <AreaChart
           width={730}
