@@ -5,6 +5,7 @@ import Link from "@mui/material/Link";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import "./login.css";
+import imagenLogo from '../../../assets/img/keys.png'
 
 import { useForm } from "../../../hooks/useForm";
 
@@ -84,7 +85,7 @@ const Login = ({ fetchUsuario }) => {
             <br />
 
             <div class="fadeIn first">
-              <img src="src\assets\img\keys.png" alt="" className="itemImg" />
+              <img src={imagenLogo} alt="" className="itemImg" />
             </div>
 
             <h1 class="active"> BIENVENIDO </h1>

@@ -34,12 +34,9 @@ export const ReportesView = () => {
 
     return (
         <>
-
             <div className="container-table-report">
                 <div className="titulo-y-boton">
-                    <div className="datatableTitle">
-                        Reportes Ventas
-                    </div>
+                    <div className="datatableTitle">Reportes Ventas</div>
                     <Pdf targetRef={ref} filename="documentReporte.pdf" options={options} x={10} y={10} scale={0.8}>
                         {({ toPdf }) => <button className="button-reporte" onClick={toPdf}>Descargar PDF</button>}
                     </Pdf>
@@ -49,7 +46,6 @@ export const ReportesView = () => {
                     <div className="titleDataReporte">
                         En los últimos seis meses
                     </div>
-
 
                     <TablaReporte />
 
@@ -64,16 +60,9 @@ export const ReportesView = () => {
                             />
                         </div>
                     </div>
-
-
                 </div>
 
-
-
-
-
             </div>
-
         </>
     )
 }
