@@ -1,35 +1,24 @@
-import { VER_USUARIOS_SUCCESS } from "../tipos/types";
+import {
+  VER_USUARIOS_SUCCESS
+} from "../tipos/types";
 
 
 
 const INITIAL_STATE = {
-
- 
-  usuarios:[],
+  usuarios: [],
   loading: {}
-  
-  
 };
 
- 
 
-export default function(state = INITIAL_STATE, action){
 
+export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-  
-    
-      case  VER_USUARIOS_SUCCESS:
+    case VER_USUARIOS_SUCCESS:
       return {
-        
         ...state,
-        usuarios:action.payload,
+        usuarios: action.payload,
         loading: false
-        
-     
-        
       };
-    
-  
     default:
       return state;
   }

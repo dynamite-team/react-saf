@@ -1,39 +1,25 @@
 import {
-  
     OPEN_MODAL,
     CLOSE_MODAL
-     
-    
-   
-   } from "../tipos/types";
+} from "../tipos/types";
 
-  
-  
-   const initialState = {
+const initialState = {
     modalOpen: false,
 }
-   
-  
-  export default function(state = initialState, action){
-  
+
+export default function (state = initialState, action) {
     switch (action.type) {
-    
-      
-        case  OPEN_MODAL:
-            
+        case OPEN_MODAL:
             return {
                 ...state,
                 modalOpen: true
             }
-        case  CLOSE_MODAL:
-
+        case CLOSE_MODAL:
             return {
                 ...state,
                 modalOpen: false
             }
-    
-    
-      default:
-        return state;
+        default:
+            return state;
     }
-  };
+};
