@@ -82,7 +82,7 @@ const Puntos = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link  to={`/admin/RegisterEditPuntos/${params.row.id}` } style={{ textDecoration: "none" }}>
               <div className="viewButton" title="Ver">
                 <VisibilityIcon style={{ fontSize: "18px" }} />
               </div>
