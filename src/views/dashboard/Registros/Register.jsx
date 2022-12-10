@@ -4,8 +4,7 @@ import { useForm } from "../../../hooks/useForm";
 import { connect } from "react-redux";
 import Select from "react-select";
 import {
-  fetchRegistroUsuario,
-  clearRegistro,
+  fetchRegistroUsuario
 } from "../../../redux/actions/registro";
 
 
@@ -114,6 +113,5 @@ const mapStateToProps = (state) => ({
 //{login} LO PASAMOS ARRIBA
 //connect ES EL QUE SE ENCARGA DE CONECTAR LAS ACCIONES CON EL COMPONENTE
 export default connect(mapStateToProps, {
-  fetchRegistroUsuario,
-  clearRegistro,
+  fetchRegistroUsuario
 })(Registro);

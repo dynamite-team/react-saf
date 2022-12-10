@@ -1,4 +1,4 @@
-import { FETCH_REGISTRO_SUCCESS, FETCH_REGISTRO_ERROR,CLEAR_REGISTRO } from "../tipos/types";
+import { FETCH_REGISTRO_SUCCESS, FETCH_REGISTRO_ERROR } from "../tipos/types";
 
 import { fetchSinToken } from "../../helpers/fetch";
 
@@ -16,13 +16,6 @@ export const fetchRegistroError = (error) => {
   };
 };
 
-export const clearRegistro = () => {
-  return({
-      type: CLEAR_REGISTRO,
-      payload: null
-  })
-}
-
 export const fetchRegistroUsuario = (usuario, nombre, apellido, correo, password, rol) => {
   return async (dispatch) => {
     const resp = await fetchSinToken(
@@ -31,31 +24,26 @@ export const fetchRegistroUsuario = (usuario, nombre, apellido, correo, password
       "POST"
     );
     const body = await resp.json();
-    console.log("body=>",body);
+    console.log("body=>", body);
 
     if (resp.ok) {
-      localStorage.setItem("token", body.token);
-      localStorage.setItem("token-init-date", new Date().getTime());
 
-      dispatch(
-        fetchRegistroSuccess({
-          uid: body.uid,
-          correo: body.correo,
-        },
-        
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Datos enviados",
-          showConfirmButton: false,
-          timer: 3000,
-        })
-        ),
-      );
-     
+      dispatch(fetchRegistroSuccess({
+        uid: body.uid,
+        correo: body.correo,
+      }));
+
+      return Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Datos enviados",
+        showConfirmButton: false,
+        timer: 3000,
+      });
+
     } else {
-    
-      Swal.fire({
+
+      return Swal.fire({
         position: "center",
         icon: "error",
         title: `${body.errors[0].msg}`,
