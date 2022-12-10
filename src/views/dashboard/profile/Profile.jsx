@@ -9,75 +9,86 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Image, Transformation } from "cloudinary-react";
 import { useSelector } from "react-redux";
+
+
 const Profile = () => {
-  const [publicacion, setPublicacion] = useState();
+
+  // const [publicacion, setPublicacion] = useState(null);
 
   const { id } = useParams();
-  const { uid, img, nombre } = useSelector((state) => state.authReducer);
+  const { uid, img, nombre, apellido, correo, createdAt, rol } = useSelector((state) => state.authReducer);
 
-  
-  useEffect(() => {
-    const cargarPublicaciones = async () => {
-      const resp = await axios.get(
-        `https://node-saf-api.onrender.com/api/v1/usuarios/${id}`
-      );
+  const fechaCreacion = new Date(createdAt).toLocaleDateString()
+  const rolMayus = rol.toUpperCase();
+  // const cargarPublicaciones = async () => {
+  //   const resp = await axios.get(
+  //     `http://localhost:5000/api/v1/usuarios/${id}`
+  //   );
 
-      if (resp.ok) {
-        setPublicacion(resp.publicacion);
-      }
-    };
-    cargarPublicaciones();
-  }, [id]);
+  //   if (resp.ok) {
+  //     setPublicacion(resp.publicacion);
+  //   }
+  // };
 
-  console.log(publicacion);
+  // useEffect(() => {
+  //   cargarPublicaciones();
+  // }, []);
 
+  // console.log(publicacion);
+  const descripcion = true;
   return (
     <>
       <>
-        <div className="single ">
-          {/* <Sidebar /> */}
-          <div className="singleContainer">
-            <div class="containersingle">
-              <header>
-                <i class="fa fa-bars" aria-hidden="true"></i>
-              </header>
-              <main>
-                <div class="row">
-                  <div class="left col-lg-4">
-                    <div class="photo-left">
-                    <Image cloudName="dawjd5cx8" publicId={img}>
-            <Transformation
-              height="200"
-              width="200"
-              radius="max"
-              aspectRatio="1.5"
-              crop="fill"
-            />
-          </Image>
-                      {/* <img class="photo" src="src\assets\img\chem.jpg" /> */}
-                    </div>
-                    <h4 class="name">admin</h4>
-                    <p class="info">administrador del SAF</p>
-                    <p class="info">admin@gmail.com</p>
-                    <div class="stats row"></div>
-                  </div>
-                  <div class="right col-lg-8">
-                    <ul class="nav">
-                      <li>About</li>
-                    </ul>
+        <div className="singleContainer">
 
-                    <div class="row gallery">
-                      <p class="desc">
-                        Hi ! My name is Jane Doe. I'm a UI/UX Designer from
-                        Paris, in France. I really enjoy photography and
-                        mountains.
-                      </p>
-                    </div>
+          <header>
+            <i className="fa fa-bars" aria-hidden="true"></i>
+          </header>
+
+          <main >
+            <div className="rowProfile">
+
+              <div className="imagen-perfil">
+                <Image cloudName="dawjd5cx8" publicId={img}>
+                  <Transformation
+                    height="200"
+                    width="200"
+                    radius="max"
+                    aspectRatio="1.5"
+                    crop="fill"
+                  />
+                </Image>
+                <h4 className="name">{`${nombre} ${apellido}`}</h4>
+              </div>
+              <div className="contenedor-info">
+                <h4 className="title-perfil">Informacion del perfil</h4>
+                <div className="info-perfil">
+                  <label>Rol de usuario</label>
+                  <p className="info">{rolMayus}</p>
+                  <label>Correo</label>
+                  <p className="info">{correo}</p>
+                  <label>Usuario creado</label>
+                  <p className="info">{fechaCreacion}</p>
+                  <label>Descripción</label>
+
+                  {
+                    descripcion ?   <div className="descripcion">
+                    Hi ! My name is Jane Doe. I'm a UI/UX Designer from
+                    Paris, in France. I really enjoy photography and
+                    mountains.
                   </div>
+                    : 
+
+                    <input placeholder="descriocon"/>
+                  }
+                
+
                 </div>
-              </main>
+              </div>
+
             </div>
-          </div>
+          </main>
+
         </div>
       </>
     </>

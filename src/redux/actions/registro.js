@@ -23,16 +23,15 @@ export const clearRegistro = () => {
   })
 }
 
-export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
+export const fetchRegistroUsuario = (usuario, nombre, apellido, correo, password, rol) => {
   return async (dispatch) => {
     const resp = await fetchSinToken(
       "api/v1/auth/registro",
-      { correo, password, nombre, rol },
+      { usuario, nombre, apellido, correo, password, rol },
       "POST"
     );
     const body = await resp.json();
-    console.log(body);
-    console.log("hola");
+    console.log("body=>",body);
 
     if (resp.ok) {
       localStorage.setItem("token", body.token);
@@ -44,7 +43,6 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
           correo: body.correo,
         },
         
-     
         Swal.fire({
           position: "center",
           icon: "success",
@@ -53,19 +51,14 @@ export const fetchRegistroUsuario = (correo, password, nombre, rol) => {
           timer: 3000,
         })
         ),
-     
-        
       );
-      console.log("hola");
-      console.log(body);
-
-    
+     
     } else {
-      console.log("hola");
+    
       Swal.fire({
         position: "center",
         icon: "error",
-        title: "error, revise los datos ingresados",
+        title: `${body.errors[0].msg}`,
         showConfirmButton: false,
         timer: 1000,
       });

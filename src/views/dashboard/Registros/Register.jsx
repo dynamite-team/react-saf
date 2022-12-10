@@ -10,35 +10,59 @@ import {
 
 
 const Registro = ({ fetchRegistroUsuario }) => {
+
   const [formRegisterValues, handleRegisterInputChange] = useForm({
+    usuario: "",
+    nombre: "",
+    apellido: "",
     correo: "",
     password: "",
-    nombre: "",
     rol: "",
   });
 
-  let { correo, password, nombre, rol } = formRegisterValues;
+  let { usuario, nombre, apellido, correo, password, rol } = formRegisterValues;
 
   const handleRegister = (e) => {
     e.preventDefault();
-
-    if (fetchRegistroUsuario(correo, password, nombre, rol)) {
-    }
-
-    //setRefresh(true)
-    console.log(formRegisterValues);
+    fetchRegistroUsuario(usuario, nombre, apellido, correo, password, rol)
   };
 
   return (
     <>
       <div className="home">
-        {/* <Sidebar /> */}
         <div className="homeContainer">
           <div className="wrapper2 ">
             <div id="formContent">
               <h2 className="active"> Registrar Usuario </h2>
 
               <form onSubmit={handleRegister}>
+
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Nombre de usuario"
+                  name="usuario"
+                  value={usuario}
+                  onChange={handleRegisterInputChange}
+                />
+
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Nombre"
+                  name="nombre"
+                  value={nombre}
+                  onChange={handleRegisterInputChange}
+                />
+
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Apellido"
+                  name="apellido"
+                  value={apellido}
+                  onChange={handleRegisterInputChange}
+                />
                 <input
                   type="text"
                   className="form-control"
@@ -57,15 +81,6 @@ const Registro = ({ fetchRegistroUsuario }) => {
                   onChange={handleRegisterInputChange}
                 />
 
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Nombre"
-                  name="nombre"
-                  value={nombre}
-                  onChange={handleRegisterInputChange}
-                />
-
                 <select
                   className="form-select form-select mx-4 mb-5"
                   aria-label="Default select example"
@@ -80,7 +95,7 @@ const Registro = ({ fetchRegistroUsuario }) => {
                   <option value="cajero">Cajero</option>
                 </select>
 
-                <input type="submit" className="fadeIn fourth" value="Enviar" />
+                <input type="submit" id="task-input" className="fadeIn fourth" value="Enviar" />
 
                 {/* <button className="btn btn-primary btn-left me-md-2" > Enviar</button> */}
               </form>
