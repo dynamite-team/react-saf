@@ -11,7 +11,8 @@ export const VerProfileSuccess = (res) => {
   };
 };
 
-export const updateProfile = (profile) => {
+
+const profileUpdated = (profile) => {
   return ({
     type: UPDATE_PROFILE,
     payload: profile
@@ -20,37 +21,36 @@ export const updateProfile = (profile) => {
 
 //get all profiles
 export const getProfile = (id) => async (dispatch) => {
-
   const res = await fetchConToken(`api/v1/usuarios/${id}`);
   const body = await res.json();
-    console.log("body",body)
+    // console.log("body",body)
 
   if (res.ok) {
     dispatch(VerProfileSuccess(body.usuario));
-    console.log("hola");
-    console.log(res);
   }
-
 };
 
-export const startUpdateProfile = async (id, profile) => {
+export const startUpdateProfile = (id, descripcion) => {
 
   return async (dispatch) => {
+    
+    try {
 
-    const res = await fetchConToken(`api/v1/usuarios/${id}`, descripcion, "PUT");
-    const body = res.json();
+      const res = await fetchConToken(`api/v1/usuarios/${id}`, descripcion, "PUT");
+    const body = await res.json();
 
     console.log("update profile");
     console.log("res", res)
+    console.log("body=>>", body)
 
-    if (res.ok) {
-      dispatch(updateProfile(profile))
-      return Swal.fire({
+    if (body.ok) {
+      dispatch(profileUpdated(descripcion))
+      Swal.fire({
         position: "center",
         icon: "success",
         title: "Se Actualizó Correctamente",
         showConfirmButton: false,
-        timer: 3000,
+        timer: 2000,
       })
     } else {
       return Swal.fire({
@@ -61,6 +61,11 @@ export const startUpdateProfile = async (id, profile) => {
         timer: 1000,
       });
     }
+      
+    } catch (error) {
+        console.log("error",error)
+    }
+    
 
   }
 }

@@ -10,21 +10,22 @@ import {
 
 const Registro = ({ fetchRegistroUsuario }) => {
 
-  const [formRegisterValues, handleRegisterInputChange] = useForm({
+  const [formRegisterValues, handleRegisterInputChange, reset] = useForm({
     usuario: "",
     nombre: "",
     apellido: "",
     correo: "",
     password: "",
     rol: "",
-    descripcion: ""
+    description: ""
   });
 
-  let { usuario, nombre, apellido, correo, password, rol, descripcion } = formRegisterValues;
+  let { usuario, nombre, apellido, correo, password, rol, description } = formRegisterValues;
 
   const handleRegister = (e) => {
     e.preventDefault();
-    fetchRegistroUsuario(usuario, nombre, apellido, correo, password, rol, descripcion)
+    fetchRegistroUsuario(usuario, nombre, apellido, correo, password, rol, description);
+    reset();
   };
 
   return (
@@ -68,8 +69,8 @@ const Registro = ({ fetchRegistroUsuario }) => {
                   type="text"
                   className="form-control"
                   placeholder="Descripcion"
-                  name="descripcion"
-                  value={descripcion}
+                  name="description"
+                  value={description}
                   onChange={handleRegisterInputChange}
                 />
 

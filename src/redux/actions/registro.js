@@ -16,11 +16,11 @@ export const fetchRegistroError = (error) => {
   };
 };
 
-export const fetchRegistroUsuario = (usuario, nombre, apellido, correo, password, rol, descripcion) => {
+export const fetchRegistroUsuario = (usuario, nombre, apellido, correo, password, rol, description) => {
   return async (dispatch) => {
     const resp = await fetchSinToken(
       "api/v1/auth/registro",
-      { usuario, nombre, apellido, correo, password, rol, descripcion },
+      { usuario, nombre, apellido, correo, password, rol, description },
       "POST"
     );
     const body = await resp.json();
