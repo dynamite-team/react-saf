@@ -38,6 +38,8 @@ export const VER_PROFILE_SUCCESS = "VER_PROFILE_SUCCESS";
 
 export const VER_PROFILE_ERROR = " VER_PROFILE_ERROR";
 
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
+
 export const TYPES = {
   LOGIN: "[auth] LOGIN",
   CHECKING: "[auth] CHECKING",

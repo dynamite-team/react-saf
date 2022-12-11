@@ -9,20 +9,37 @@
   background-color: #045694;
 }
 
-
-
 h1 {
   text-align: center;
-  font-size: 46px;
-  font-weight: 600;
+  font-size: 2.7rem;
+  font-weight: bold;
   text-transform: uppercase;
   display: inline-block;
-  margin: 40px 8px 10px 8px;
+  margin: auto;
+  margin-top: 5%;
+  margin-bottom: 8%;
   color: #cccccc;
 }
 
+input.fadeIn.third{
+  width: 80%;
+  height: 60px;
+  border-radius: 10px;
+  text-align: center;
+  font-size: 1rem;
+}
 
+input.fadeIn.second{
+  width: 80%;
+  height: 60px;
+  border-radius: 10px;
+  font-size: 1rem;
+}
 
+input.fadeIn.fourth{
+  margin-top: 3%;
+  font-size: 1rem;
+}
 /* STRUCTURE */
 
 .wrapperLogin {
@@ -72,20 +89,14 @@ h1.active {
 }
 
 #login {
-
   border: 2px solid #045694;
   color: #0d0d0d;
-
-
-
 }
 
 
 #password {
   border: 2px solid #045694;
   color: #0d0d0d;
-
-
 }
 
 
@@ -122,10 +133,7 @@ input[type=reset]:hover {
 }
 
 #submit {
-
-
   background-color: #045694;
-
 }
 
 input[type=button]:active,

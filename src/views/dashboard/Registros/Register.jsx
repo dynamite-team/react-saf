@@ -17,13 +17,14 @@ const Registro = ({ fetchRegistroUsuario }) => {
     correo: "",
     password: "",
     rol: "",
+    descripcion: ""
   });
 
-  let { usuario, nombre, apellido, correo, password, rol } = formRegisterValues;
+  let { usuario, nombre, apellido, correo, password, rol, descripcion } = formRegisterValues;
 
   const handleRegister = (e) => {
     e.preventDefault();
-    fetchRegistroUsuario(usuario, nombre, apellido, correo, password, rol)
+    fetchRegistroUsuario(usuario, nombre, apellido, correo, password, rol, descripcion)
   };
 
   return (
@@ -62,6 +63,16 @@ const Registro = ({ fetchRegistroUsuario }) => {
                   value={apellido}
                   onChange={handleRegisterInputChange}
                 />
+
+                 <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Descripcion"
+                  name="descripcion"
+                  value={descripcion}
+                  onChange={handleRegisterInputChange}
+                />
+
                 <input
                   type="text"
                   className="form-control"

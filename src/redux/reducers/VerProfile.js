@@ -1,10 +1,11 @@
 import {
   VER_PROFILE_SUCCESS,
+  UPDATE_PROFILE,
 } from "../tipos/types";
 
 const INITIAL_STATE = {
-  profiles: [],
-  loading: {}
+  profile: null,
+  loading: true
 };
 
 export default function (state = INITIAL_STATE, action) {
@@ -13,8 +14,12 @@ export default function (state = INITIAL_STATE, action) {
     case VER_PROFILE_SUCCESS:
       return {
         ...state,
-        profiles: action.payload,
+        profile: action.payload,
         loading: false
+      };
+    case UPDATE_PROFILE:
+      return{
+        ...state
       };
     default:
       return state;

@@ -1,60 +1,34 @@
 import {
-  
   VER_PUNTOS_SUCCESS,
-  
   UPDATE_PUNTOS,
-  
   SINGLE_PUNTOS
-  
- 
- } from "../tipos/types";
-
-
+} from "../tipos/types";
 
 const INITIAL_STATE = {
-
- 
-  puntos:[],
+  puntos: [],
   loading: {}
-  
-  
 };
 
- 
 
-export default function(state = INITIAL_STATE, action){
-
+export default function (state = INITIAL_STATE, action) {
   switch (action.type) {
-  
-    
-      case  VER_PUNTOS_SUCCESS:
+    case VER_PUNTOS_SUCCESS:
       return {
-        
         ...state,
-        puntos:action.payload,
+        puntos: action.payload,
         loading: false
-        
-     
-        
       };
-
-      case  SINGLE_PUNTOS:
-        return {
-          
-          ...state,
-          puntos:action.payload,
-          loading: false
-        };
-  
-
-      case  UPDATE_PUNTOS:
-        return {
-          ...state,
-          loading: false
+    case SINGLE_PUNTOS:
+      return {
+        ...state,
+        puntos: action.payload,
+        loading: false
+      };
+    case UPDATE_PUNTOS:
+      return {
+        ...state,
+        loading: false
       }
-  
-    
-  
     default:
       return state;
   }

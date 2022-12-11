@@ -3,14 +3,14 @@ import "../../../styles/StyleForm.css";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux"
-import { singlePuntos, startUpdate } from "../../../redux/actions/verPuntos";
+import { startUpdateProfile } from "../../../redux/actions/VerProfile";
 
 
-const RegisterEdit = () => {
+const ProfileEdit = () => {
 
   let dispatch = useDispatch();
   const { id } = useParams();
-  const { puntos } = useSelector((state) => state.punto);
+  const { profile } = useSelector((state) => state.profile);
   // console.log(puntos);
 
   const [formRegisterValues, setState] = useState({
@@ -39,8 +39,8 @@ const RegisterEdit = () => {
   }, [])
 
   useEffect(() => {
-    if (puntos) {
-      setState({ ...puntos })
+    if (profile) {
+      setState({ ...profile })
     }
   }, [puntos])
 
@@ -102,4 +102,4 @@ const RegisterEdit = () => {
   );
 };
 
-export default RegisterEdit;
+export default ProfileEdit;

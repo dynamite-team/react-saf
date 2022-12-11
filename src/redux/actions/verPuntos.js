@@ -29,54 +29,29 @@ export const updatePuntos = (punto) => {
 //get all profiles
 export const getPuntos = () => async (dispatch) => {
 
-
-
   const res = await axios.get(
     "https://node-saf-api.onrender.com/api/v1/puntos/?desde=0&limite=20"
   );
-
-
     dispatch(VerPuntosSuccess(res.data));
-
- 
-  
-
     console.log("hola");
     console.log(res);
-  
-
 };
 
 export const singlePuntos = (id) => async (dispatch) => {
 
-
-
   const res = await axios.get(
     `https://node-saf-api.onrender.com/api/v1/puntos/${id}`
   );
-
-
     dispatch(VerPuntosSingle(res.data));
-
- 
-  
-
     console.log("hola");
     console.log(res);
-  
-
 };
 
 export const startUpdate = (punto,id) => async (dispatch) => {
-
-
-
   const resp = await fetchConToken(`api/v1/puntos/${id}`, punto,'PUT' );
 
   if ( resp.ok ) {
     dispatch(updatePuntos(punto));
-
-    
     Swal.fire({
       position: "center",
       icon: "success",
@@ -93,10 +68,8 @@ export const startUpdate = (punto,id) => async (dispatch) => {
     timer: 1000,
   });
 }
-   
-
+  
     console.log("holaUpdate");
     console.log(resp);
-  
 
 };

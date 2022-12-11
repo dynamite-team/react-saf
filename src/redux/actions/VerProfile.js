@@ -1,7 +1,7 @@
 import axios from "axios";
-
-import { VER_PROFILE_SUCCESS, } from "../tipos/types";
-
+import { fetchConToken } from "../../helpers/fetch";
+import { VER_PROFILE_SUCCESS, UPDATE_PROFILE } from "../tipos/types";
+import Swal from "sweetalert2";
 
 
 export const VerProfileSuccess = (res) => {
@@ -11,27 +11,58 @@ export const VerProfileSuccess = (res) => {
   };
 };
 
+export const updateProfile = (profile) => {
+  return ({
+    type: UPDATE_PROFILE,
+    payload: profile
+  })
+}
+
 //get all profiles
-export const getProfile= (id) => async (dispatch) => {
+export const getProfile = (id) => async (dispatch) => {
 
+  const res = await fetchConToken(`api/v1/usuarios/${id}`);
+  const body = await res.json();
+    console.log("body",body)
 
-
-  const res = await axios.get(
-    `https://node-saf-api.onrender.com/api/v1/usuarios/${id}`
-  );
-
-
-    dispatch(VerProfileSuccess(res.data));
-
- 
-  
-
+  if (res.ok) {
+    dispatch(VerProfileSuccess(body.usuario));
     console.log("hola");
     console.log(res);
-  
+  }
 
 };
 
+export const startUpdateProfile = async (id, profile) => {
 
+  return async (dispatch) => {
+
+    const res = await fetchConToken(`api/v1/usuarios/${id}`, descripcion, "PUT");
+    const body = res.json();
+
+    console.log("update profile");
+    console.log("res", res)
+
+    if (res.ok) {
+      dispatch(updateProfile(profile))
+      return Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Se Actualizó Correctamente",
+        showConfirmButton: false,
+        timer: 3000,
+      })
+    } else {
+      return Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "error, revise los datos ingresados",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    }
+
+  }
+}
 
 export default getProfile;

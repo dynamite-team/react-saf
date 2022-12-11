@@ -1,14 +1,7 @@
-import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Typography from "@mui/material/Typography";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+
 import "./login.css";
 import imagenLogo from '../../../assets/img/keys.png'
-
 import { useForm } from "../../../hooks/useForm";
-
 import { startLogin } from "../../../redux/actions/auth";
 
 //REDUX
@@ -16,31 +9,6 @@ import { useDispatch } from "react-redux";
 import { connect } from "react-redux";
 import { fetchUsuario } from "../../../redux/actions/login";
 
-import shortid from "shortid";
-
-import { useNavigate } from "react-router-dom";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        DynamiteTeam
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-{
-  /* axxx */
-}
-const theme = createTheme();
 
 //LOGIN
 const Login = ({ fetchUsuario }) => {
@@ -49,15 +17,10 @@ const Login = ({ fetchUsuario }) => {
 
   /* CARGAR DATOS */
 
-  //const [email, setUsuario] = useState('')
-  const [errorMessage, setErrorMessage] = useState(null);
-
   const [formLoginValues, handleLoginInputChange] = useForm({
     correo: "",
     password: "",
   });
-
-  const navigate = useNavigate();
 
   const { correo, password } = formLoginValues;
 
@@ -66,60 +29,46 @@ const Login = ({ fetchUsuario }) => {
 
     dispatch(startLogin(correo, password));
 
-    /*   const enviarDatos = await fetchUsuario(correo, password);
-
-    if (enviarDatos == true) {
-      navigate("/Panel");
-    }
-
-    console.log(correo);
-    console.log("fetch", await fetchUsuario(correo, password));
-    console.log(password); */
   };
 
   return (
     <>
-      <div class="containerLogin">
-        <div class="wrapperLogin fadeInDown">
+      <div className="containerLogin">
+        <div className="wrapperLogin fadeInDown">
           <div id="formContent">
             <br />
 
-            <div class="fadeIn first">
+            <div className="fadeIn first">
               <img src={imagenLogo} alt="" className="itemImg" />
             </div>
 
-            <h1 class="active"> BIENVENIDO </h1>
+            <h1 className="active"> BIENVENIDO </h1>
 
-            <br />
-            <br />
-            <br />
-
-            <form onSubmit={handleLogin}>
+            <form onSubmit={handleLogin} className="form-login">
               <input
                 type="text"
                 id="login"
-                class="fadeIn second"
+                className="fadeIn second"
                 name="correo"
                 value={correo}
                 onChange={handleLoginInputChange}
-                placeholder="correo"
+                placeholder="Correo"
               />
 
               <input
-                type="text"
+                type="password"
                 id="password"
-                class="fadeIn third"
+                className="fadeIn third"
                 name="password"
                 placeholder="Contraseña"
                 value={password}
                 onChange={handleLoginInputChange}
               />
-              <br />
-              <br />
+            
               <input
                 type="submit"
                 id="submit"
-                class="fadeIn fourth"
+                className="fadeIn fourth"
                 value="Enviar"
               />
             </form>
