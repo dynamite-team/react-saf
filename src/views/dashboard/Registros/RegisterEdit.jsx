@@ -24,7 +24,7 @@ const RegisterEdit = () => {
 
   const handleRegisterInputChange = (e) => {
     let { name, value } = e.target
-    setState({ formRegisterValues, [name]: value })
+    setState({ ...formRegisterValues, [name]: value })
     console.log("from",formRegisterValues)
   }
 

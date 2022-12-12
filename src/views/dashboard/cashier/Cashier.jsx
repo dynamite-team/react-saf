@@ -255,6 +255,14 @@ const Cashier = () => {
               <button
                 onClick={() => {
                   dispatch(submitOrder(cart, orden));
+                  dispatch(clearCart());
+
+                  Swal.fire({
+                    icon: "success",
+                    title: "Venta realizada con éxito",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
                 }}
               >
                 Enviar
