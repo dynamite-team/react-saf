@@ -8,7 +8,7 @@ import { fetchRegistroCategoria } from "../../../redux/actions/categorias";
 //import Sidebar from "../../../components/navbars/Navhorizontal";
 
 const RegistroCategoria = ({ fetchRegistroCategoria }) => {
-  const [formRegisterValues, handleRegisterInputChange] = useForm({
+  const [formRegisterValues, handleRegisterInputChange, reset] = useForm({
     nombre: "",
   });
 
@@ -19,6 +19,7 @@ const RegistroCategoria = ({ fetchRegistroCategoria }) => {
 
     if (fetchRegistroCategoria(nombre)) {
     }
+    reset();
 
     //setRefresh(true)
     console.log(nombre);

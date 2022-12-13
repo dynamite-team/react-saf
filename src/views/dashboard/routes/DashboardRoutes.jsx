@@ -27,7 +27,7 @@ import "./dasboardRoutes.scss";
 import SingleOrder from "../order/SingleOrder";
 import RegisterEdit from "../Registros/RegisterEdit";
 import { ProfileUserList } from "../profile/ProfileUserList";
-
+import { VistaProducto } from "../productos/vistaProducto";
 
 
 export const DashboardRoutes = () => {
@@ -49,6 +49,7 @@ export const DashboardRoutes = () => {
           <Route path="/categorias" element={<Categorias />} />
           <Route path="/RegisterCategoria" element={<RegisterCategoria />} />
           <Route path="/productos" element={<Productos />} />
+          <Route path="/vistaProducto/:id" element={<VistaProducto/>} />
           <Route path="/RegisterProductos" element={<RegisterProductos />} />
           <Route path="/RegisterEditPuntos/:id" element={<RegisterEdit />} />
           <Route path="/ventas" element={<Order />} />

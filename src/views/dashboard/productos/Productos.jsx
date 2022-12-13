@@ -10,6 +10,8 @@ import { capitalizeFirstLetter } from "../../../helpers/capitalize-first-letter"
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import { getProducto } from "../../../redux/actions/verProductos";
+import { useDispatch } from "react-redux";
 
 const columns = [
   {
@@ -111,6 +113,7 @@ const columns = [
 const Productos = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch(); 
 
   const cargarList = async () => {
     const resp = await fetchSinToken(`api/v1/productos/?desde=0&limite=10`);
@@ -138,7 +141,7 @@ const Productos = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
+            <Link to={`/admin/vistaProducto/${params.row.id}`} style={{ textDecoration: "none" }}>
               <div className="viewButton" title="Ver">
                 <VisibilityIcon style={{ fontSize: "18px" }} />
               </div>

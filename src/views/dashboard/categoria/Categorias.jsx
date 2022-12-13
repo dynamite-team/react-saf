@@ -12,6 +12,7 @@ import Spinner from "../../../components/spinner/Spinner";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from '@mui/icons-material/Edit';
 
 const columns = [
   {
@@ -94,7 +95,7 @@ const Categorias = () => {
           <div className="cellAction">
             <Link to="/users/test" style={{ textDecoration: "none" }}>
               <div className="viewButton" title="Ver">
-                <VisibilityIcon style={{ fontSize: "18px" }} />
+                <EditIcon style={{ fontSize: "18px" }} />
               </div>
             </Link>
             <div
