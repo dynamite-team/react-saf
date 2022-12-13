@@ -1,8 +1,8 @@
 import AliceCarousel from "react-alice-carousel";
 
-import imagen1 from '../assets/img/imagen2.png'
-import imagen2 from '../assets/img/imagen3.png'
-import imagen3 from '../assets/img/imagen4.png'
+import imagen1 from '../assets/img/imagen1.png'
+import imagen2 from '../assets/img/imagen2.png'
+import imagen3 from '../assets/img/imagen3.png'
 
 const CarruselPublicidad = () => {
 

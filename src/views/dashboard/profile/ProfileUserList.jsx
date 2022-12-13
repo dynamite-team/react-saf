@@ -79,10 +79,20 @@ export const ProfileUserList = () => {
                                                 </>
 
                                             }
-                                            {/* <label className="label-info">Usuario creado</label>
-                                            <p className="info">{fechaCreacion}</p> */}
-                                            <label className="label-info">Descripción</label>
-                                            <p className="info">{description}</p>
+
+                                            {
+                                                description == "" ?
+                                                    <>
+                                                        <label className="label-info">Descripción</label>
+                                                        <p className="info">Trabajador del SAF</p>
+                                                    </>
+                                                    :
+                                                    <>
+                                                        <label className="label-info">Descripción</label>
+                                                        <p className="info">{description}</p>
+                                                    </>
+                                            }
+
                                             {
                                                 createdAt &&
                                                 <>
