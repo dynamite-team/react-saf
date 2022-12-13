@@ -5,9 +5,11 @@ import Spinner from "../../../components/spinner/Spinner";
 import { DataGrid } from "@mui/x-data-grid";
 import { fetchSinToken } from "../../../helpers/fetch";
 import Box from "@mui/material/Box";
+import getProfile from "../../../redux/actions/VerProfile";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import EditIcon from '@mui/icons-material/Edit';
 
 const columns = [
   {
@@ -83,8 +85,8 @@ const Puntos = () => {
         return (
           <div className="cellAction">
             <Link  to={`/admin/RegisterEditPuntos/${params.row.id}` } style={{ textDecoration: "none" }}>
-              <div className="viewButton" title="Ver">
-                <VisibilityIcon style={{ fontSize: "18px" }} />
+              <div className="viewButton" title="Editar" onClick={()=> getProfile(params.row.id)}>
+                <EditIcon style={{ fontSize: "18px" }} />
               </div>
             </Link>
             <div

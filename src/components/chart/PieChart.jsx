@@ -22,7 +22,8 @@ export const PieChartReporte = ({ dataTotal }) => {
                 data: dataTotal,
                 backgroundColor: ["aqua", "orange", "purple", "yellow", "blue", "green", "pink"]
             }
-        ]
+        ],
+
     };
 
     const options = {

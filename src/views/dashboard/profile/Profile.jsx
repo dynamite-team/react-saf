@@ -28,9 +28,6 @@ const Profile = () => {
   //   setDescripcionText(description)
   // }, [reload])
 
-  useEffect(() => {
-    dispatch(getProfile(id))
-  }, []);
 
   return (
     <>

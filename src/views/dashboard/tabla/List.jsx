@@ -8,6 +8,9 @@ import Spinner from "../../../components/spinner/Spinner";
 
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
+import getProfile from "../../../redux/actions/VerProfile";
+import { useDispatch } from "react-redux";
+
 
 const columns = [
   {
@@ -56,6 +59,7 @@ const List = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const dispatch = useDispatch();
   const cargarList = async () => {
     const resp = await fetchSinToken(`api/v1/usuarios/?desde=0&limite=20`);
 
@@ -82,8 +86,10 @@ const List = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton" title="Ver">
+            <Link to={`/admin/usuariosList/${params.row.id}` } style={{ textDecoration: "none" }}>
+              <div className="viewButton" title="Ver" onClick={() => {
+              dispatch(getProfile(params.row.id));
+            }}>
                 <VisibilityIcon style={{ fontSize: "18px" }} />
               </div>
             </Link>

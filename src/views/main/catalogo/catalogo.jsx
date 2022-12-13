@@ -16,14 +16,16 @@ import Nav from "../../../components/navbars/Nav";
 
 const Container = styled.div`
   background-color: white;
-  padding: 10px;
+  width: 100%;
+  min-height: 100%;
   text-align: center;
-  margin: 35px 35px 35px 35px;
+  
 `;
 const Title = styled.h1`
   text-align: center;
   color: blue;
-  padding: 20px;
+  margin-top: 2%;
+  margin-bottom: 4%;
   font-size: 2rem;
   @media screen and (max-width: 900px) {
     font-size: 1.3rem;
@@ -33,6 +35,8 @@ const Title = styled.h1`
 const Input = styled.input`
   font-size: 18px;
   padding: 10px;
+  font-family: Candara;
+  font-weigth: bold;
   margin: 1% 2% 1% 2%;
   background: #f5f5f5;
   border-radius: 20px;
@@ -55,7 +59,9 @@ const GridProductos = styled.div`
 `;
 const ContainerCarrusel = styled.div`
   width: 100%;
-  margin: 1% 2% 1% 2%;
+  margin: auto;
+  margin-top: 2%;
+  align-items: center
 `;
 const ItemCategorias = styled.div`
   width: 200px;
@@ -201,7 +207,7 @@ const Catalogo = () => {
         src={nextArrow}
         width={50}
         height={50}
-        style={{ position: "absolute", right: "30%", top: 220 }}
+        style={{ position: "absolute", right: "30%", top: 250 }}
       />
     );
   };
@@ -212,7 +218,7 @@ const Catalogo = () => {
         src={previusArrow}
         width={50}
         height={50}
-        style={{ position: "absolute", left: "30%", top: 220 }}
+        style={{ position: "absolute", left: "30%", top: 250 }}
       />
     );
   };
@@ -243,9 +249,12 @@ const Catalogo = () => {
           </Container>
         )}
 
-        <ModalUbi puntos={puntos} setValorSelect={setValorSelect} />
-        <Input onChange={searcher} placeholder="Buscar Productos"></Input>
-        <Button onClick={() => setPrimeraVez(true)}>Ver todos</Button>
+        <div style={{"marginTop":"4%"}}>
+          <ModalUbi puntos={puntos} setValorSelect={setValorSelect} />
+          <Input onChange={searcher} placeholder="Buscar Productos"></Input>
+          <Button onClick={() => setPrimeraVez(true)}>Ver todos</Button >
+        </div>
+
 
         {/* {-----------GRID DE PRODUCTOS-------------} */}
 
@@ -266,7 +275,7 @@ const Catalogo = () => {
                         //Si filtrado no tiene nada me muestra todos los productos
                         filtrado == "" ? (
                           <div>
-                            No se han encontrado productos en esta categoria
+                            No se han encontrado productos en esta categoria 😞 
                           </div>
                         ) : (
                           <>
@@ -274,12 +283,12 @@ const Catalogo = () => {
                               //Filtra por categoria
                               categoria !== ""
                                 ? filtrado.map((producto) => (
-                                    <CardProductoCat {...producto} />
-                                  ))
+                                  <CardProductoCat {...producto} />
+                                ))
                                 : //filtra por input
-                                  filtrado.map((producto) => (
-                                    <CardProductoCat {...producto} />
-                                  ))
+                                filtrado.map((producto) => (
+                                  <CardProductoCat {...producto} />
+                                ))
                             }
                           </>
                         )
@@ -292,7 +301,7 @@ const Catalogo = () => {
           </>
         ) : (
           <div
-            style={{ fontFamily: "Cambria", fontSize: "20px", marginTop: "1%" }}
+            style={{ fontSize: "1.3rem", marginTop: "1%", "paddingBottom": "3%" }}
           >
             ¡Seleccione un lugar para ver la disponibilidad de productos!
           </div>

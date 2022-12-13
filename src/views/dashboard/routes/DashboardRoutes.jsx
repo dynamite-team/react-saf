@@ -26,6 +26,7 @@ import Profile from "../profile/Profile";
 import "./dasboardRoutes.scss";
 import SingleOrder from "../order/SingleOrder";
 import RegisterEdit from "../Registros/RegisterEdit";
+import { ProfileUserList } from "../profile/ProfileUserList";
 
 
 
@@ -41,6 +42,7 @@ export const DashboardRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/usuarios" element={<List />} />
           <Route path="/usuarios/:id" element={<Profile />} />
+          <Route path="/usuariosList/:id" element={<ProfileUserList />}/> 
           <Route path="/RegisterUsuario" element={<RegisterUsuario />} />
           <Route path="/puntos" element={<PuntosVentas />} />
           <Route path="/RegisterPuntos" element={<RegisterPuntos />} />

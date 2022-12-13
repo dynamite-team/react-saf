@@ -52,14 +52,14 @@ const RegisterEdit = () => {
         <div className="homeContainer">
           <div className="wrapper2 ">
             <div id="formContent">
-              <h2 className="active"> Registrar Usuario </h2>
+              <h2 className="active"> Editar Punto </h2>
 
               <form onSubmit={handleSubmit}>
 
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="nombre"
+                  placeholder="Nombre"
                   name="nombre"
                   value={nombre}
                   onChange={handleRegisterInputChange}
@@ -68,7 +68,7 @@ const RegisterEdit = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="departamento"
+                  placeholder="Departamento"
                   name="departamento"
                   value={departamento}
                   onChange={handleRegisterInputChange}
@@ -86,7 +86,7 @@ const RegisterEdit = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="descripcion"
+                  placeholder="Descripcion"
                   name="descripcion"
                   value={descripcion}
                   onChange={handleRegisterInputChange}

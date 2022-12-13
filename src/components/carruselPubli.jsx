@@ -1,13 +1,15 @@
 import AliceCarousel from "react-alice-carousel";
-import imagen2 from '../assets/img/soberania.jpeg'
 
+import imagen1 from '../assets/img/imagen2.png'
+import imagen2 from '../assets/img/imagen3.png'
+import imagen3 from '../assets/img/imagen4.png'
 
 const CarruselPublicidad = () => {
 
     const ArrayImagenes = [
         {
             id: 1,
-            img: `${imagen2}`
+            img: `${imagen1}`
         },
         {
             id: 2,
@@ -15,7 +17,7 @@ const CarruselPublicidad = () => {
         },
         {
             id: 3,
-            img: `${imagen2}`
+            img: `${imagen3}`
         }
     ]
 
@@ -26,15 +28,15 @@ const CarruselPublicidad = () => {
     };
 
     const items = ArrayImagenes.map((item) => {
-        return <div key={item.id} style={{ 'width': '95%', 'height': '10%'}}>
-            <img src={item.img}  style={{ 'objectFit': 'cover', 'width': '100%', 'height': '250px', 'borderRadius': '20px' }}/>
+        return <div key={item.id} style={{ 'width': '100%', 'height': '10%'}}>
+            <img src={item.img}  style={{ 'objectFit': 'cover', 'width': '90%', 'height': '310px', 'borderRadius': '20px' }}/>
         </div>
     })
 
     return (
         <>
             <AliceCarousel
-                style={{ "margin": "35px 35px 35px 35px" }}
+                style={{ "margin": "auto" }}
                 mouseTracking
                 items={items}
                 responsive={responsive}
