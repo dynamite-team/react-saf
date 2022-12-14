@@ -141,11 +141,11 @@ const Productos = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to={`/admin/vistaProducto/${params.row.id}`} style={{ textDecoration: "none" }}>
+           
               <div className="viewButton" title="Ver">
                 <VisibilityIcon style={{ fontSize: "18px" }} />
               </div>
-            </Link>
+            
             <div
               className="deleteButton"
               title="Borrar"

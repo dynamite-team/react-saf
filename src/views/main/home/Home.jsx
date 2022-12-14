@@ -7,6 +7,7 @@ import imagen2 from "../../../assets/img/lacte.jpg";
 import iconFacebook from "../../../assets/img/facebook.png";
 import iconInstagram from "../../../assets/img/instagram.png";
 import { CardHome } from "../../../components/cards/cardHome";
+import CarruselHome from "./CarruselHome";
 
 export default function Home() {
   return (
@@ -39,11 +40,19 @@ export default function Home() {
         </div>
       </header>
 
+
       {/* -------------BODY------------- */}
 
       <div className="divisor">
         <div className="divisor-titulo">Conocé este proyecto</div>
       </div>
+
+      {/* -----------CARRUSEL----------- */}
+      <div className="segunda-seccion">
+        <CarruselHome />
+      </div>
+
+      
       <div className="body-home">
         <div className="cards">
           <CardHome
@@ -68,29 +77,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* --------------LINK A CATALOGO---------------- */}
-      <div className="segunda-seccion">
-        <div className="div-seccion">
-          <h4 className="texto-catalogo">
-            Si quieres ver los productos que puedes encontrar en los stands del
-            programa en tu zona te invitamos a que veas nuestro catálogo
-          </h4>
-          <a href="/catalogo">
-            <button className="boton-catalogo">Ver catálogo</button>
-          </a>
-        </div>
 
-        <div className="formulario-contacto">
-          <label className="titulo-form-contacto">
-            Contáctate con nosotros
-          </label>
-          <input
-            className="input-form-contacto"
-            placeholder="Ingrese su email"
-          />
-          <button className="boton-contacto">Enviar</button>
-        </div>
-      </div>
 
       {/* -----------FOOTER-------------- */}
       <div className="svg-hero" style={{ height: "150px", overflow: "hidden" }}>
